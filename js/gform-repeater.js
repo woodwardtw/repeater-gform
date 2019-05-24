@@ -204,6 +204,7 @@ MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
       input.addEventListener("input", function() {
       showList('list-'+index, theId); 
       filterThings('list-'+index, theId);     
+      
     });
     }
   })
@@ -222,8 +223,8 @@ observer.observe(document, {
 
 function showList(listId,searchId){
   let searcher = document.getElementById(searchId)
-  if ( searcher.value.length > 3) {
-    console.log(searcher.value.length)
+  if ( searcher.value.length > 1) {
+    //console.log(searcher.value.length)
     document.getElementById(listId).classList.add('show')
   } if ( searcher.value.length === 0 ){
      document.getElementById(listId).classList.remove('show')
@@ -241,7 +242,7 @@ function chooseIt(e){
   console.log(document.getElementById(e.parentNode.id.classList))
   //document.getElementById('the-list').style.height = '0px'
   //document.getElementById('the-list').style.opacity = '0'
-  document.getElementById('searcher').focus(); //change focus to something else
+  //document.getElementById('searcher').focus(); //change focus to something else
 }
 
 
@@ -253,11 +254,11 @@ function filterThings(listId, searchId) {
   ul = document.getElementById(listId);
   //console.log(ul)
   li = ul.getElementsByTagName('li');
-  console.log(li.innerHTML)
+  console.log(li)
   // Loop through all list items, and hide those who don't match the search query
   for (i = 0; i < li.length; i++) {
-   
-    txtValue = li.innerHTML;
+     console.log(li[i].innerHTML);
+    txtValue = li[i].innerHTML;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       li[i].style.display = "";
     } else {
@@ -265,3 +266,4 @@ function filterThings(listId, searchId) {
     }
   }
 }
+
