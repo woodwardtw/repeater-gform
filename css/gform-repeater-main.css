@@ -1,0 +1,50 @@
+.gfield_repeater_cell{
+  display: inline-block;
+}
+
+.ginput_container_text, .ginput_container_number, .ginput_container, .gfield_label  {
+	display: block;
+}
+
+.tenure-list {
+  height: 0px;
+  opacity: 0;
+  width: 0px;
+  overflow: hidden;
+  display: none;
+  padding: 10px;
+  border: 1px solid;
+}
+
+.show {
+  display:block;
+  height:auto;
+  width: 400px;
+  opacity: 1;
+  z-index: 2000;
+  position: absolute;
+  background: white;
+  left: 10vw;
+}
+
+.extras {
+  display: none;
+}
+
+.chosen {
+  background-color: #bdf1ba;
+}
+
+.tenure-list li {
+  list-style-type: none;
+  border-bottom: 1px solid #efefef;
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  transition: all .4s;
+  word-wrap: normal;
+}
+
+.tenure-list li:hover {
+  background-color: #bdf1ba;
+  cursor: pointer;
+}
