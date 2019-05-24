@@ -194,9 +194,16 @@ MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
     var theId = input.id;
     var mainId = theId.substring(0, 12);
     if (mainId === 'input_7_1001' && !document.getElementById('list-'+index)){
-    input.insertAdjacentHTML('afterend','<ul class="tenure-list" id="list-'+index+'" data-field="' + theId + '">'+theItems+'</ul>');
+      input.insertAdjacentHTML('afterend','<ul class="tenure-list" id="list-'+index+'" data-field="' + theId + '">'+theItems+'</ul>');
+      let lists = input.parentNode.querySelectorAll('ul');//deal with gform copying down the list on add item
+      lists.forEach(function(list){
+        if (list.dataset.field != input.id){
+          list.remove()
+        }
+      })
       input.addEventListener("input", function() {
-      showList('list-'+index, theId);
+      showList('list-'+index, theId); 
+      filterThings('list-'+index, theId);     
     });
     }
   })
@@ -226,7 +233,7 @@ function showList(listId,searchId){
 
 
 function chooseIt(e){
-  let newChoice = e.innerHTML;
+  let newChoice = e.innerText;
   let fieldId = e.parentNode.dataset.field;
   document.getElementById(fieldId).value = newChoice;
   //document.getElementById(fieldId).classList.add('chosen') //problem is this gets copied down 
@@ -235,4 +242,26 @@ function chooseIt(e){
   //document.getElementById('the-list').style.height = '0px'
   //document.getElementById('the-list').style.opacity = '0'
   document.getElementById('searcher').focus(); //change focus to something else
+}
+
+
+function filterThings(listId, searchId) {
+  // Declare variables
+  var input, filter, ul, li, i, txtValue;
+  input = document.getElementById(searchId);
+  filter = input.value.toUpperCase();
+  ul = document.getElementById(listId);
+  //console.log(ul)
+  li = ul.getElementsByTagName('li');
+  console.log(li.innerHTML)
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+   
+    txtValue = li.innerHTML;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
 }
