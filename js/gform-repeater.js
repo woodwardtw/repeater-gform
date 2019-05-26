@@ -193,6 +193,7 @@ MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
   theInputs.forEach(function(input,index){
     var theId = input.id;
     var mainId = theId.substring(0, 12);
+    //REMBER TO CHANGE THIS TO ID 1
     if (mainId === 'input_7_1001' && !document.getElementById('list-'+index)){
       input.insertAdjacentHTML('afterend','<ul class="tenure-list" id="list-'+index+'" data-field="' + theId + '">'+theItems+'</ul>');
       let lists = input.parentNode.querySelectorAll('ul');//deal with gform copying down the list on add item
@@ -203,7 +204,7 @@ MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
       })
       input.addEventListener("input", function() {
       showList('list-'+index, theId); 
-      filterThings('list-'+index, theId);     
+      //filterThings('list-'+index, theId);     
       
     });
     }
@@ -242,7 +243,7 @@ function chooseIt(e){
   console.log(document.getElementById(e.parentNode.id.classList))
   //document.getElementById('the-list').style.height = '0px'
   //document.getElementById('the-list').style.opacity = '0'
-  //document.getElementById('searcher').focus(); //change focus to something else
+  //document.getElementById(fieldId).nextSibling.focus(); //change focus to next element
 }
 
 

@@ -1,11 +1,11 @@
 <?php 
 /*
-Plugin Name: repeater gform
+Plugin Name: repeater gform - deals with accreditation tracking
 Plugin URI:  https://github.com/
-Description: For stuff that's magical
+Description: For repeater fields and other pieces that merge with gravity
 Version:     1.0
-Author:      ALT Lab
-Author URI:  http://altlab.vcu.edu
+Author:      Tom Woodward
+Author URI:  http://bionicteaching.com
 License:     GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Domain Path: /languages
@@ -27,6 +27,7 @@ function prefix_load_scripts() {
 }
 
 // Adjust your form ID
+    //REMBER TO CHANGE THIS TO ID 1
 add_filter( 'gform_form_post_get_meta_7', 'add_my_field' );
 function add_my_field( $form ) {
  
@@ -76,6 +77,7 @@ function add_my_field( $form ) {
 }
  
 // Remove the field before the form is saved. Adjust your form ID
+    //REMBER TO CHANGE THIS TO ID 1
 add_filter( 'gform_form_update_meta_7', 'remove_my_field', 10, 3 );
 function remove_my_field( $form_meta, $form_id, $meta_name ) {
  
@@ -86,5 +88,28 @@ function remove_my_field( $form_meta, $form_id, $meta_name ) {
  
     return $form_meta;
 }
+
+
+/*
+**
+DISPLAY STUFF
+**
+*/
+
+//[foobar]
+function build_tenure_table(){
+    $html = '';
+    $search_criteria = array();
+    $sorting         = array();
+    $paging          = array( 'offset' => 0, 'page_size' => 500 );
+    $total_count     = 0;
+    $entries         = GFAPI::get_entries( 7, $search_criteria, $sorting, $paging, $total_count );
+        foreach ($entries as $entry) {   
+            var_dump($entry);
+    }
+
+    return $html;
+}
+add_shortcode( 'repeater-table', 'build_tenure_table' );
 
 
