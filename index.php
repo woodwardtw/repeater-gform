@@ -105,7 +105,8 @@ function build_tenure_table(){
     $total_count     = 0;
     $entries         = GFAPI::get_entries( 7, $search_criteria, $sorting, $paging, $total_count );
         foreach ($entries as $entry) {   
-            var_dump($entry);
+            print("<pre>".print_r($entry['1000'],true)."</pre>"); //$entry['1000'] == $entry['1.3'] $entry['1.6'] 
+            $html .= '<div class="row"><div class="col-md-1">' . $entry['1.3'] .'</div><div class="col-md-1">' . $entry['1.6'] .'</div><div class="col-md-1">' . $entry['1000'][0]['1002'] .'</div></div>';
     }
 
     return $html;
