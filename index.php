@@ -105,12 +105,20 @@ function build_tenure_table(){
     $total_count     = 0;
     $entries         = GFAPI::get_entries( 7, $search_criteria, $sorting, $paging, $total_count );
         foreach ($entries as $entry) {   
-            print("<pre>".print_r($entry['1000'],true)."</pre>"); //$entry['1000'] == $entry['1.3'] $entry['1.6'] 
-            $html .= '<div class="row"><div class="col-md-1">' . $entry['1.3'] .'</div><div class="col-md-1">' . $entry['1.6'] .'</div><div class="col-md-1">' . $entry['1000'][0]['1002'] .'</div></div>';
+            //print("<pre>".print_r($entry['1000'],true)."</pre>"); //$entry['1000'] == $entry['1.3'] $entry['1.6'] 
+            $html .= all_tenure_records( $entry['1.3'] ,  $entry['1.6'], $entry['1000'] );
     }
 
     return $html;
 }
 add_shortcode( 'repeater-table', 'build_tenure_table' );
 
+
+function all_tenure_records($first_name, $last_name, $array){
+    $html = '';
+    foreach ($array as $key => $record) {
+        $html .=  '<div class="row tenure-record"><div class="col-md-1">' . $first_name .'</div><div class="col-md-2">' . $last_name .'</div><div class="col-md-2">' . $record['1002'] .'</div><div class="col-md-5">' . $record['1001'] .'</div><div class="col-md-2">' . $record['1003'] . '</div></div>';
+    }
+    return $html;
+}
 
