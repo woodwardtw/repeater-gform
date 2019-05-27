@@ -28,7 +28,7 @@ function prefix_load_scripts() {
 
 // Adjust your form ID
     //REMBER TO CHANGE THIS TO ID 1
-add_filter( 'gform_form_post_get_meta_7', 'add_my_field' );
+add_filter( 'gform_form_post_get_meta_1', 'add_my_field' );
 function add_my_field( $form ) {
  
     // Create a Single Line text field for the title
@@ -78,7 +78,7 @@ function add_my_field( $form ) {
  
 // Remove the field before the form is saved. Adjust your form ID
     //REMBER TO CHANGE THIS TO ID 1
-add_filter( 'gform_form_update_meta_7', 'remove_my_field', 10, 3 );
+add_filter( 'gform_form_update_meta_1', 'remove_my_field', 10, 3 );
 function remove_my_field( $form_meta, $form_id, $meta_name ) {
  
     if ( $meta_name == 'display_meta' ) {
@@ -103,7 +103,7 @@ function build_tenure_table(){
     $sorting         = array();
     $paging          = array( 'offset' => 0, 'page_size' => 500 );
     $total_count     = 0;
-    $entries         = GFAPI::get_entries( 7, $search_criteria, $sorting, $paging, $total_count );
+    $entries         = GFAPI::get_entries( 1, $search_criteria, $sorting, $paging, $total_count );
         foreach ($entries as $entry) {   
             //print("<pre>".print_r($entry['1000'],true)."</pre>"); //$entry['1000'] == $entry['1.3'] $entry['1.6'] 
             $html .= all_tenure_records( $entry['1.3'] ,  $entry['1.6'], $entry['1000'] );

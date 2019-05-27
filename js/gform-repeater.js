@@ -194,7 +194,8 @@ MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
     var theId = input.id;
     var mainId = theId.substring(0, 12);
     //REMBER TO CHANGE THIS TO ID 1
-    if (mainId === 'input_7_1001' && !document.getElementById('list-'+index)){
+    if (mainId === 'input_1_1001' && !document.getElementById('list-'+index)){
+      input.spellcheck = false;
       input.insertAdjacentHTML('afterend','<ul class="tenure-list" id="list-'+index+'" data-field="' + theId + '">'+theItems+'</ul>');
       let lists = input.parentNode.querySelectorAll('ul');//deal with gform copying down the list on add item
       lists.forEach(function(list){
@@ -204,7 +205,7 @@ MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
       })
       input.addEventListener("input", function() {
       showList('list-'+index, theId); 
-      //filterThings('list-'+index, theId);     
+      filterThings('list-'+index, theId);     
       
     });
     }
@@ -253,7 +254,7 @@ function filterThings(listId, searchId) {
   input = document.getElementById(searchId);
   filter = input.value.toUpperCase();
   ul = document.getElementById(listId);
-  //console.log(ul)
+  console.log(ul)
   li = ul.getElementsByTagName('li');
   console.log(li)
   // Loop through all list items, and hide those who don't match the search query
