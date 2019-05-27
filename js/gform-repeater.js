@@ -269,3 +269,37 @@ function filterThings(listId, searchId) {
   }
 }
 
+
+function setUpFilters(){
+  let theInputs = document.querySelectorAll('input');
+  let theItems = '';
+  items.forEach(function(item){
+     theItems = theItems + '<li onclick="chooseIt(this)">' +item.title + '<span class="extras">' + item.description + '</span></li>';
+  })
+
+  theInputs.forEach(function(input,index){
+    var theId = input.id;
+    var mainId = theId.substring(0, 12);
+    //REMBER TO CHANGE THIS TO ID 1
+    if (mainId === 'input_1_1001' && !document.getElementById('list-'+index)){
+      input.spellcheck = false;
+      input.insertAdjacentHTML('afterend','<ul class="tenure-list" id="list-'+index+'" data-field="' + theId + '">'+theItems+'</ul>');
+      let lists = input.parentNode.querySelectorAll('ul');//deal with gform copying down the list on add item
+      lists.forEach(function(list){
+        if (list.dataset.field != input.id){
+          list.remove()
+        }
+      })
+      input.addEventListener("input", function() {
+      showList('list-'+index, theId); 
+      filterThings('list-'+index, theId);     
+      
+    });
+    }
+  })
+}
+
+jQuery( document ).ready(function() {
+  console.log('loaded');
+  setUpFilters();
+});
