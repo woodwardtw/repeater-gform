@@ -1,0 +1,153 @@
+{
+    "key": "group_5cf50e360aba8",
+    "title": "Faculty Data",
+    "fields": [
+        {
+            "key": "field_5cf50e404b399",
+            "label": "Faculty Record",
+            "name": "faculty_record",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "",
+            "sub_fields": [
+                {
+                    "key": "field_5cf50e504b39a",
+                    "label": "Record Title",
+                    "name": "record_title",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5cf50e5f4b39b",
+                    "label": "Record Category",
+                    "name": "record_category",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "An authored or edited volume published by an academic book publisher": "An authored or edited volume published by an academic book publisher",
+                        "An article in an edited volume published by an academic book publisher": "An article in an edited volume published by an academic book publisher",
+                        "An article in a peer-reviewed conference proceeding": "An article in a peer-reviewed conference proceeding",
+                        "Peer-reviewed working papers": "Peer-reviewed working papers",
+                        "Publication or revision of textbooks": "Publication or revision of textbooks",
+                        "Publication of cases": "Publication of cases",
+                        "Publication of other teaching material": "Publication of other teaching material",
+                        "Publication in non peer-reviewed journals": "Publication in non peer-reviewed journals",
+                        "NGO (non-governmental organization) reports": "NGO (non-governmental organization) reports",
+                        "Approved research grant application": "Approved research grant application",
+                        "Competitive research awards \/ prizes": "Competitive research awards \/ prizes",
+                        "Competitive teaching awards": "Competitive teaching awards",
+                        "Faculty opponent on dissertation": "Faculty opponent on dissertation",
+                        "Member of dissertation grading committee": "Member of dissertation grading committee",
+                        "Academic meeting presentations (Conference, Networks, Seminars, Workshops)": "Academic meeting presentations (Conference, Networks, Seminars, Workshops)",
+                        "Editorship with academic journal": "Editorship with academic journal",
+                        "Service on editorial boards or committees": "Service on editorial boards or committees",
+                        "Editorship of professional or other business\/management publication": "Editorship of professional or other business\/management publication",
+                        "Academic meeting proceedings": "Academic meeting proceedings",
+                        "Public inquires": "Public inquires",
+                        "PRJ (not on ABS or Noweigan List)": "PRJ (not on ABS or Noweigan List)",
+                        "KAU University Press Reports": "KAU University Press Reports",
+                        "Validation of scholarly academic status through leadership positions, participation in recognized academic societies and associations, academic fellow status, invited presentations (national \/ international), peer-review assignments, etc.": "Validation of scholarly academic status through leadership positions, participation in recognized academic societies and associations, academic fellow status, invited presentations (national \/ international), peer-review assignments, etc.",
+                        "PhD courses in the discipline": "PhD courses in the discipline",
+                        "Service in development projects for collaborations with organizations and other universities": "Service in development projects for collaborations with organizations and other universities",
+                        "Service on boards for teaching, research, and academic development": "Service on boards for teaching, research, and academic development",
+                        "Substantive roles and participation in academic development projects": "Substantive roles and participation in academic development projects",
+                        "Consulting activities that are material in terms of time and substance": "Consulting activities that are material in terms of time and substance",
+                        "Faculty internships": "Faculty internships",
+                        "Development and presentation of executive education programs": "Development and presentation of executive education programs",
+                        "Sustained professional work supporting qualified status": "Sustained professional work supporting qualified status",
+                        "Significant participation in business professional associations": "Significant participation in business professional associations",
+                        "Professional meeting proceedings": "Professional meeting proceedings",
+                        "Professional meeting presentations": "Professional meeting presentations",
+                        "Relevant, active service on boards of directors": "Relevant, active service on boards of directors",
+                        "Documented continuing professional education experiences": "Documented continuing professional education experiences",
+                        "Participation in professional events that focus on the practice of business, management, and related issues": "Participation in professional events that focus on the practice of business, management, and related issues",
+                        "Participation in other activities that place faculty in direct contact with business or other organizational leaders": "Participation in other activities that place faculty in direct contact with business or other organizational leaders",
+                        "Visiting & Guest Professor": "Visiting & Guest Professor",
+                        "Media (TV, Radio, Newspaper Articles & Presentations)": "Media (TV, Radio, Newspaper Articles & Presentations)",
+                        "Development of new courses \/ programmes": "Development of new courses \/ programmes",
+                        "Teacher Exchange": "Teacher Exchange",
+                        "Organising Conference, Networks, Seminars, Workshops": "Organising Conference, Networks, Seminars, Workshops",
+                        "Teaching, Leading, Presenting at Summerschools": "Teaching, Leading, Presenting at Summerschools",
+                        "Unknown": "Unknown"
+                    },
+                    "default_value": [],
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_5cf50f064b39c",
+                    "label": "Year",
+                    "name": "record_year",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 2019,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": 2015,
+                    "max": 2025,
+                    "step": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1559572201
+}
