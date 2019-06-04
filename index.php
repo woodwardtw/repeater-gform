@@ -36,7 +36,7 @@ function add_my_field( $form ) {
         'type'   => 'text',
         'id'     => 1002, // The Field ID must be unique on the form
         'formId' => $form['id'],
-        'label'  => 'Title',
+        'label'  => 'Activity',
         'pageNumber'  => 1, // Ensure this is correct
     ) );
  
@@ -63,7 +63,7 @@ function add_my_field( $form ) {
         //'description'      => 'No max',
         'id'               => 1000, // The Field ID must be unique on the form
         'formId'           => $form['id'],
-        'label'            => 'Evidence',
+        'label'            => 'Academic/Professional/Scholarly Activities',
         'addButtonText'    => 'Add item', // Optional
         'removeButtonText' => 'Remove item', // Optional
         //'maxItems'         => 3, // Optional
@@ -140,7 +140,9 @@ function update_record(){
 
 
 //add_shortcode( 'update-record', 'update_record' );
-
+/*
+************SORT BY YEAR
+*/
 
 //SORT ACF YEAR FIELD TO NEWEST ON TOP
 function sort_record_by_year( $value, $post_id, $field ) {

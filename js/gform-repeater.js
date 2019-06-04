@@ -21,11 +21,11 @@ var items = [
   },
    {
     title: 'Publication of cases',
-    description: 'writing or publication all'
+    description: 'writing or publication all Utveckling skarpa'
   },
    {
     title: 'Publication of other teaching material',
-    description: 'writing or publication all'
+    description: 'writing or publication all Kurslitteratur bokprojekt kompendium'
   },
    {
     title: 'Publication in non peer-reviewed journals',
@@ -49,15 +49,15 @@ var items = [
   },
   {
     title: 'Faculty opponent on dissertation',
-    description: 'dissertation all'
+    description: 'dissertation all Uppsats avhandling'
   },
   {
     title: 'Member of dissertation grading committee',
-    description: 'dissertation all'
+    description: 'dissertation all uppsats Betygskommité avhandling'
   },
   {
     title: 'Academic meeting presentations (Conference, Networks, Seminars, Workshops)',
-    description: 'presentation all'
+    description: 'presentation all Konferens Nätverks Seminarium'
   },
   {
     title: 'Editorship with academic journal',
@@ -65,7 +65,7 @@ var items = [
   },
   {
     title: 'Service on editorial boards or committees',
-    description: 'Editorial all'
+    description: 'Editorial all Reviewer'
   },
   {
     title: 'Editorship of professional or other business/management publication',
@@ -89,7 +89,7 @@ var items = [
   },
   {
     title: 'Validation of scholarly academic status through leadership positions, participation in recognized academic societies and associations, academic fellow status, invited presentations (national / international), peer-review assignments, etc.',
-    description: 'all'
+    description: 'all Föredrag förening inbjuden gäst'
   },
   {
     title: 'PhD courses in the discipline',
@@ -97,7 +97,7 @@ var items = [
   },
   {
     title: 'Service in development projects for collaborations with organizations and other universities',
-    description: 'Service all'
+    description: 'Service all samverkan'
   },
   {
     title: 'Service on boards for teaching, research, and academic development',
@@ -105,11 +105,11 @@ var items = [
   },
   {
     title: 'Substantive roles and participation in academic development projects',
-    description: 'Service all'
+    description: 'Service all Uppdrag'
   },
   {
     title: 'Consulting activities that are material in terms of time and substance',
-    description: 'Service all'
+    description: 'Service all Konsult'
   },
   {
     title: 'Faculty internships',
@@ -117,7 +117,7 @@ var items = [
   },
   {
     title: 'Development and presentation of executive education programs',
-    description: 'Service all'
+    description: 'Service all Utveckling'
   },
   {
     title: 'Sustained professional work supporting qualified status',
@@ -137,7 +137,7 @@ var items = [
   },
   {
     title: 'Relevant, active service on boards of directors',
-    description: 'Service all'
+    description: 'Service all Ordföramde Styrelse Kommite'
   },
   {
     title: 'Documented continuing professional education experiences',
@@ -157,7 +157,7 @@ var items = [
   },
   {
     title: 'Media (TV, Radio, Newspaper Articles & Presentations)',
-    description: 'Teaching all'
+    description: 'Teaching all Tidning Artikla'
   },
   {
     title: 'Development of new courses / programmes',
@@ -244,7 +244,9 @@ function chooseIt(e){
   console.log(document.getElementById(e.parentNode.id.classList))
   //document.getElementById('the-list').style.height = '0px'
   //document.getElementById('the-list').style.opacity = '0'
-  //document.getElementById(fieldId).nextSibling.focus(); //change focus to next element
+  let stringLeng = fieldId.length;
+  let theItem = fieldId.substring(13,stringLeng); //input_1_1001-0
+  document.getElementById('input_1_1003-'+theItem).focus(); //change focus to next element
 }
 
 
