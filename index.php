@@ -127,15 +127,20 @@ function all_tenure_records($first_name, $last_name, $array){
 FORM TO ACF 
 */
 
-function update_record(){
+add_action( 'gform_after_submission_1', 'update_record', 10, 2 );
+
+function update_record($entry, $form){
 	global $post;
 	$post_id = $post->ID;
-	$row = array(
-		'record_title' => 'my neat title',
-		'record_category' => 'Publication of cases',
-		'record_year' => 2019,
-	);
-	 add_row('faculty_record', $row, $post_id);
+	$array = $entry['1000'];
+	    foreach ($array as $key => $record) {
+			$row = array(
+				'record_title' => $record['1002'],
+				'record_category' => $record['1001'] ,
+				'record_year' => $record['1003'],
+			);
+			 add_row('faculty_record', $row, $post_id);
+		}
 }
 
 
