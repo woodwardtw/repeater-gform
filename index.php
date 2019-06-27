@@ -209,3 +209,92 @@ function my_acf_json_load_point( $paths ) {
     return $paths;
     
 }
+
+
+//USER IS there?
+
+function user_is_member(){
+    $user_id = get_current_user_id();
+    $current_users = get_users();
+    $user_ids = [];//create array of user IDs
+    foreach ($current_users as $user) {
+        array_push($user_ids, $user->ID);
+    }
+    //var_dump($user_ids);
+    if (in_array($user_id, $user_ids)) {
+        $title = sanitize_title(wp_get_current_user()->user_login);
+        data_post_finder($title, $user_id);
+    } else {
+        echo 'make the user first';
+    }
+
+}
+
+add_shortcode( 'mem', 'user_is_member' );
+
+
+
+function data_post_maker($title, $user_id){
+    $my_post = array(
+      'post_title'    => wp_strip_all_tags( $title ),
+      'post_content'  => '[gravityform id="1" title="false" description="false" ajax="true"]',
+      'post_status'   => 'publish',
+      'post_author'   => $user_id,
+      'post_type'     => 'page',  
+      'page_template'  => 'page-templates/fullwidthpage.php',
+      //'post_category' => array( 8,39 )
+    );
+     
+    // Insert the post into the database
+    wp_insert_post( $my_post );
+}
+
+
+function data_post_finder($title, $user_id){
+    $args = array(
+      'name'        => $title,
+      'post_type'   => 'page',
+      'post_status' => 'publish',
+      'numberposts' => 1
+    );
+    $my_posts = get_posts($args);
+    if( $my_posts ) {
+      //wp_redirect(site_url() .'/'. $title);
+      //var_dump($my_posts);
+      $post_id = get_the_ID();      
+      if ($my_posts[0]->ID != $post_id) {
+        //var_dump('hey they donot match');
+        //js_redirector();
+      }
+     
+    } else {
+        data_post_maker($title, $user_id);
+    }   
+}
+
+
+function js_redirector($content){
+        $title = sanitize_title(wp_get_current_user()->user_login);
+        $url = '<a href="' . site_url() .'/'. $title . '">Go Here</a>';
+        return $content . $url;
+}
+
+
+add_filter( 'the_content', 'js_redirector' );
+
+
+        //add_filter( 'the_content', 'js_redirector' );
+
+
+// // returns the content of $GLOBALS['post']
+// // if the page is called 'debug'
+// function my_the_content_filter($content) {
+//   // assuming you have created a page/post entitled 'debug'
+//   if ($GLOBALS['post']->post_name == 'debug') {
+//     return var_export($GLOBALS['post'], TRUE );
+//   }
+//   // otherwise returns the database content
+//   return $content;
+// }
+
+// add_filter( 'the_content', 'my_the_content_filter' );
