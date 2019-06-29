@@ -137,7 +137,12 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "post"
+                "value": "page"
+            },
+            {
+                "param": "post_template",
+                "operator": "==",
+                "value": "page-templates\/fullwidthpage.php"
             }
         ]
     ],
@@ -149,5 +154,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1559572201
+    "modified": 1561814599
 }

@@ -99,17 +99,36 @@ DISPLAY STUFF
 //[foobar]
 function build_tenure_table(){
     $html = '';
-    $search_criteria = array();
-    $sorting         = array();
-    $paging          = array( 'offset' => 0, 'page_size' => 500 );
-    $total_count     = 0;
-    $entries         = GFAPI::get_entries( 1, $search_criteria, $sorting, $paging, $total_count );
-        foreach ($entries as $entry) {   
-            //print("<pre>".print_r($entry['1000'],true)."</pre>"); //$entry['1000'] == $entry['1.3'] $entry['1.6'] 
-            $html .= all_tenure_records( $entry['1.3'] ,  $entry['1.6'], $entry['1000'] );
-    }
+    // $search_criteria = array();
+    // $sorting         = array();
+    // $paging          = array( 'offset' => 0, 'page_size' => 500 );
+    // $total_count     = 0;
+    //$entries         = GFAPI::get_entries( 1, $search_criteria, $sorting, $paging, $total_count );
+    //print("<pre>".print_r($entries,true)."</pre>");
+    if( have_rows('faculty_record', get_the_ID()) ):
 
-    return $html;
+            // loop through the rows of data
+            while ( have_rows('faculty_record') ) : the_row();
+
+                // display a sub field value               
+                $record_title = get_sub_field('record_title');
+                $record_category = get_sub_field('record_category');
+                $record_year = get_sub_field('record_year');
+                $html .= specific_tenure_records($record_title, $record_category, $record_year);
+            endwhile;
+
+        else :
+
+            // no rows found
+
+    endif;
+
+    //     foreach ($entries as $entry) {   
+    //         //print("<pre>".print_r($entry['1000'],true)."</pre>"); //$entry['1000'] == $entry['1.3'] $entry['1.6'] 
+    //         $html .= all_tenure_records( $entry['1.3'] ,  $entry['1.6'], $entry['1000'] );
+    // }
+
+    echo $html;
 }
 add_shortcode( 'repeater-table', 'build_tenure_table' );
 
@@ -122,6 +141,12 @@ function all_tenure_records($first_name, $last_name, $array){
     return $html;
 }
 
+
+function specific_tenure_records($title, $category, $year){
+    $html = '';
+        $html .=  '<div class="row tenure-record"><div class="col-md-1">' . $year .'</div><div class="col-md-2">' . $title .'</div><div class="col-md-2">' . $category .'</div></div>';
+    return $html;
+}
 
 /*
 FORM TO ACF 
@@ -237,7 +262,7 @@ add_shortcode( 'mem', 'user_is_member' );
 function data_post_maker($title, $user_id){
     $my_post = array(
       'post_title'    => wp_strip_all_tags( $title ),
-      'post_content'  => '[gravityform id="1" title="false" description="false" ajax="true"]',
+      'post_content'  => '<div class="row"><div class="col-md-7">[gravityform id="1" title="false" description="false" ajax="true"]</div><div class="col-md-5">[repeater-table]</div></div>',
       'post_status'   => 'publish',
       'post_author'   => $user_id,
       'post_type'     => 'page',  
