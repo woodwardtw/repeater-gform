@@ -210,6 +210,18 @@ MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
     });
     }
   })
+  jQuery( function() {
+    var availableTags = [
+      "2016",
+      "2017",
+      "2018",
+      "2019",
+      "2020",
+    ];
+    jQuery( ".ginput_container_number input" ).autocomplete({
+      source: availableTags
+    });
+  } );
 
 });
 
@@ -309,18 +321,7 @@ jQuery( document ).ready(function() {
 
 
 
-jQuery( function() {
-    var availableTags = [
-      "2016",
-      "2017",
-      "2018",
-      "2019",
-      "2020",
-    ];
-    jQuery( "#input_1_1003-0" ).autocomplete({
-      source: availableTags
-    });
-  } );
+
 
 /**
  * Gravity Wiz // Gravity Forms // Disable Submission when Pressing Enter 
