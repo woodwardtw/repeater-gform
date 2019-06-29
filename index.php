@@ -128,7 +128,7 @@ function build_tenure_table(){
     //         $html .= all_tenure_records( $entry['1.3'] ,  $entry['1.6'], $entry['1000'] );
     // }
 
-    echo $html;
+    return $html;
 }
 add_shortcode( 'repeater-table', 'build_tenure_table' );
 
@@ -136,7 +136,7 @@ add_shortcode( 'repeater-table', 'build_tenure_table' );
 function all_tenure_records($first_name, $last_name, $array){
     $html = '';
     foreach ($array as $key => $record) {
-        $html .=  '<div class="row tenure-record"><div class="col-md-1">' . $first_name .'</div><div class="col-md-2">' . $last_name .'</div><div class="col-md-2">' . $record['1002'] .'</div><div class="col-md-5">' . $record['1001'] .'</div><div class="col-md-2">' . $record['1003'] . '</div></div>';
+        $html .=  '<div class="row tenure-record"><div class="col-md-2">' . $first_name .'</div><div class="col-md-2">' . $last_name .'</div><div class="col-md-5">' . $record['1002'] .'</div><div class="col-md-5">' . $record['1001'] .'</div><div class="col-md-5">' . $record['1003'] . '</div></div>';
     }
     return $html;
 }
@@ -144,7 +144,7 @@ function all_tenure_records($first_name, $last_name, $array){
 
 function specific_tenure_records($title, $category, $year){
     $html = '';
-        $html .=  '<div class="row tenure-record"><div class="col-md-1">' . $year .'</div><div class="col-md-2">' . $title .'</div><div class="col-md-2">' . $category .'</div></div>';
+        $html .=  '<div class="row tenure-record"><div class="col-md-2">' . $year .'</div><div class="col-md-5">' . $title .'</div><div class="col-md-5">' . $category .'</div></div>';
     return $html;
 }
 
