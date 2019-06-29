@@ -340,3 +340,20 @@ function kstad_add_user_to_blog($user_id, $blog_id){
        add_user_to_blog($blog_id, $user_id, 'author');
     }
 }
+
+
+//let authors edit their own pages
+
+//Add capabilities to author, so he/she can edit...    
+ function add_author_theme_caps() {
+    // gets the author role
+    $role = get_role( 'author' );
+    $role->add_cap( 'edit_pages' );
+    $role->add_cap( 'edit_published_pages' );
+    $role->remove_cap( 'edit_posts' ); 
+    $role->remove_cap( 'publish_posts' );  
+    $role->add_cap( 'publish_pages' );  
+    $role->add_cap( 'edit_published_posts' );   
+    $role->add_cap( 'edit_published_pages' );       
+}
+add_action( 'admin_init', 'add_author_theme_caps');
