@@ -254,6 +254,7 @@ function user_is_member(){
         } else {
             $blog_id = get_current_blog_id();
             kstad_add_user_to_blog($user_id, $blog_id);
+            wp_redirect( home_url() ); exit;
         }
     }  else {
         return 'Please login.';
@@ -276,7 +277,8 @@ function data_post_maker($title, $user_id){
     );
      
     // Insert the post into the database
-    wp_insert_post( $my_post );
+    $new_post_id = wp_insert_post( $my_post );
+    add_post_meta( $new_post_id, 'personal-page', 'personal');
 }
 
 
@@ -302,9 +304,11 @@ function data_post_finder($title, $user_id){
     }   
 }
 
-
+//FRONT PAGE BUTTON FOR DIRECTING TO SPECIFIC PAGE
 function js_redirector($content){
-    if (is_user_logged_in()){
+    global $post;
+    $personal = get_post_meta($post->ID,'personal-page', true);
+    if (is_user_logged_in() && $personal != 'true'){
         $title = sanitize_title(wp_get_current_user()->user_login);
         $url = '<a class="btn btn-primary" href="' . site_url() .'/'. $title . '">Go Here to Enter Your Information</a>';
         return $content . $url;
@@ -316,8 +320,25 @@ function js_redirector($content){
 
 add_filter( 'the_content', 'js_redirector' );
 
+function filter_all_pages($content){
+    global $post;
+    $personal = get_post_meta($post->ID,'personal-page', true);// is a personal page
+    $user_id = get_current_user_id(); //current user id
+    $author_id = intval($post->post_author);
+    if ($personal === 'personal'){
+        if( $user_id === $author_id || is_super_admin($user_id)){ 
+                return $content;
+            }
+            else {
+                return 'Content restricted.';
+            }
+        } else {
+            return $content;
+        }
 
-        //add_filter( 'the_content', 'js_redirector' );
+}
+
+add_filter('the_content', 'filter_all_pages');
 
 
 // // returns the content of $GLOBALS['post']
@@ -337,7 +358,7 @@ add_filter( 'the_content', 'js_redirector' );
 //add user to blog if not a member
 function kstad_add_user_to_blog($user_id, $blog_id){
     if(!is_user_member_of_blog( $user_id, $blog_id )){
-       add_user_to_blog($blog_id, $user_id, 'author');
+       add_user_to_blog($blog_id, $user_id, 'author');       
     }
 }
 
@@ -357,3 +378,7 @@ function kstad_add_user_to_blog($user_id, $blog_id){
     $role->add_cap( 'edit_published_pages' );       
 }
 add_action( 'admin_init', 'add_author_theme_caps');
+
+
+//show acf fields
+add_filter( 'acf/settings/remove_wp_meta_box', '__return_false' );
