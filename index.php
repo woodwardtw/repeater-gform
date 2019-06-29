@@ -110,7 +110,6 @@ function build_tenure_table(){
 
             // loop through the rows of data
             while ( have_rows('faculty_record') ) : the_row();
-
                 // display a sub field value               
                 $record_title = get_sub_field('record_title');
                 $record_category = get_sub_field('record_category');
@@ -254,7 +253,7 @@ function user_is_member(){
         } else {
             $blog_id = get_current_blog_id();
             kstad_add_user_to_blog($user_id, $blog_id);
-            wp_redirect( home_url() ); exit;
+            wp_redirect($title); exit;
         }
     }  else {
         return 'Please login.';
@@ -279,6 +278,7 @@ function data_post_maker($title, $user_id){
     // Insert the post into the database
     $new_post_id = wp_insert_post( $my_post );
     add_post_meta( $new_post_id, 'personal-page', 'personal');
+    //wp_redirect();
 }
 
 
@@ -290,19 +290,16 @@ function data_post_finder($title, $user_id){
       'numberposts' => 1
     );
     $my_posts = get_posts($args);
-    if( $my_posts ) {
-      //wp_redirect(site_url() .'/'. $title);
-      //var_dump($my_posts);
+    if( $my_posts ) {     
       $post_id = get_the_ID();      
       if ($my_posts[0]->ID != $post_id) {
-        //var_dump('hey they donot match');
-        //js_redirector();
-      }
-     
+       //nada
+      }     
     } else {
         data_post_maker($title, $user_id);
     }   
 }
+
 
 //FRONT PAGE BUTTON FOR DIRECTING TO SPECIFIC PAGE
 function js_redirector($content){
@@ -317,17 +314,18 @@ function js_redirector($content){
     }
 }
 
-
 add_filter( 'the_content', 'js_redirector' );
 
+
+//CONTENT VIEW RESTRICTOR 
 function filter_all_pages($content){
     global $post;
     $personal = get_post_meta($post->ID,'personal-page', true);// is a personal page
     $user_id = get_current_user_id(); //current user id
     $author_id = intval($post->post_author);
     if ($personal === 'personal'){
-        if( $user_id === $author_id || is_super_admin($user_id)){ 
-                return $content;
+        if( $user_id === $author_id || is_super_admin($user_id) || is_admin()){ 
+                return $content;//show the logged data option
             }
             else {
                 return 'Content restricted.';
