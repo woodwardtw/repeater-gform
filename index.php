@@ -240,20 +240,24 @@ function my_acf_json_load_point( $paths ) {
 //USER IS there?
 
 function user_is_member(){
-    $user_id = get_current_user_id();
-    $current_users = get_users();
-    $user_ids = [];//create array of user IDs
-    foreach ($current_users as $user) {
-        array_push($user_ids, $user->ID);
+    if (is_user_logged_in()){
+        $user_id = get_current_user_id();
+        $current_users = get_users();
+        $user_ids = [];//create array of user IDs
+        foreach ($current_users as $user) {
+            array_push($user_ids, $user->ID);
+        }
+        //var_dump($user_ids);
+        if (in_array($user_id, $user_ids)) {
+            $title = sanitize_title(wp_get_current_user()->user_login);
+            data_post_finder($title, $user_id);
+        } else {
+            $blog_id = get_current_blog_id();
+            kstad_add_user_to_blog($user_id, $blog_id);
+        }
+    }  else {
+        return 'Please login.';
     }
-    //var_dump($user_ids);
-    if (in_array($user_id, $user_ids)) {
-        $title = sanitize_title(wp_get_current_user()->user_login);
-        data_post_finder($title, $user_id);
-    } else {
-        echo 'make the user first';
-    }
-
 }
 
 add_shortcode( 'mem', 'user_is_member' );
@@ -300,9 +304,13 @@ function data_post_finder($title, $user_id){
 
 
 function js_redirector($content){
+    if (is_user_logged_in()){
         $title = sanitize_title(wp_get_current_user()->user_login);
-        $url = '<a href="' . site_url() .'/'. $title . '">Go Here</a>';
+        $url = '<a class="btn btn-primary" href="' . site_url() .'/'. $title . '">Go Here to Enter Your Information</a>';
         return $content . $url;
+    } else {
+        return $content;
+    }
 }
 
 
@@ -324,3 +332,11 @@ add_filter( 'the_content', 'js_redirector' );
 // }
 
 // add_filter( 'the_content', 'my_the_content_filter' );
+
+
+//add user to blog if not a member
+function kstad_add_user_to_blog($user_id, $blog_id){
+    if(!is_user_member_of_blog( $user_id, $blog_id )){
+       add_user_to_blog($blog_id, $user_id, 'author');
+    }
+}
