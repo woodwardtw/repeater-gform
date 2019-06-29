@@ -21,7 +21,8 @@ function prefix_load_scripts() {
     $deps = array('jquery');
     $version= '1.0'; 
     $in_footer = true;
-    wp_enqueue_script('list-js', 'https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js', $deps, $version, $in_footer);     
+    wp_enqueue_script('list-js', 'https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js', $deps, $version, $in_footer);  
+    wp_enqueue_script('jqueryUI', 'https://code.jquery.com/ui/1.12.1/jquery-ui.js', $deps, $version, $in_footer);     
     wp_enqueue_script('gform-repeater-js', plugin_dir_url( __FILE__) . 'js/gform-repeater.js', $deps, $version, $in_footer); 
     wp_enqueue_style( 'gform-repeater-main-css', plugin_dir_url( __FILE__) . 'css/gform-repeater-main.css');
 }
@@ -36,7 +37,7 @@ function add_my_field( $form ) {
         'type'   => 'text',
         'id'     => 1002, // The Field ID must be unique on the form
         'formId' => $form['id'],
-        'label'  => 'Activity',
+        'label'  => 'Activity Title',
         'pageNumber'  => 1, // Ensure this is correct
     ) );
  
@@ -45,7 +46,7 @@ function add_my_field( $form ) {
         'type'   => 'text',
         'id'     => 1001, // The Field ID must be unique on the form
         'formId' => $form['id'],
-        'label'  => 'Category',
+        'label'  => 'Activity Category',
         'pageNumber'  => 1, // Ensure this is correct        
     ) );
 
@@ -98,7 +99,7 @@ DISPLAY STUFF
 
 //[foobar]
 function build_tenure_table(){
-    $html = '';
+    $html = '<h2>Previous Entries</h2>';
     // $search_criteria = array();
     // $sorting         = array();
     // $paging          = array( 'offset' => 0, 'page_size' => 500 );
@@ -262,7 +263,7 @@ add_shortcode( 'mem', 'user_is_member' );
 function data_post_maker($title, $user_id){
     $my_post = array(
       'post_title'    => wp_strip_all_tags( $title ),
-      'post_content'  => '<div class="row"><div class="col-md-7">[gravityform id="1" title="false" description="false" ajax="true"]</div><div class="col-md-5">[repeater-table]</div></div>',
+      'post_content'  => '<h2>Add Activities</h2><div class="row"><div class="col-md-7">[gravityform id="1" title="false" description="false" ajax="false"]</div><div class="col-md-5">[repeater-table]</div></div>',
       'post_status'   => 'publish',
       'post_author'   => $user_id,
       'post_type'     => 'page',  

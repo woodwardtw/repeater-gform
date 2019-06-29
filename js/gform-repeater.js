@@ -305,3 +305,19 @@ jQuery( document ).ready(function() {
   console.log('loaded');
   setUpFilters();
 });
+
+
+
+
+jQuery( function() {
+    var availableTags = [
+      "2016",
+      "2017",
+      "2018",
+      "2019",
+      "2020",
+    ];
+    jQuery( "#input_1_1003-0" ).autocomplete({
+      source: availableTags
+    });
+  } );

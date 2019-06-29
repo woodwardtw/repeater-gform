@@ -54,3 +54,30 @@
 	padding: 10px;
 	margin-bottom: 8px;
 }
+
+
+/*jquery autocomplete ui styling*/
+
+#ui-id-1 ul, .ui-autocomplete {
+  list-style-type: none;  
+  padding-left: 0;
+  margin-left: 0;
+  border: 1px solid #000;
+  padding: 5px;
+  display: block;
+  width: 220px;
+  background-color: #fff;
+}
+
+#ui-id-1 li {
+  display: block;
+  padding: 7px 10px;
+  width: 200px;
+  border-bottom: 1px solid #efefef;
+}
+
+#ui-id-1 li:hover, #ui-id-1 li:focus {
+    background-color: #bdf1ba;
+    cursor: pointer;
+}
+
