@@ -334,3 +334,13 @@ jQuery(document).on( 'keypress', '.gform_wrapper', function (e) {
         return false;
     }
 } );
+
+//turn off autocomplete which is a big mess
+function endAutocomplete(){
+  let fields = document.querySelectorAll('input');
+  console.log(fields)
+  fields[0].attributes.autocomplete = "autocomplete_off_hack";
+
+}
+
+endAutocomplete()

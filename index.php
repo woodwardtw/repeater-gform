@@ -309,9 +309,9 @@ function data_post_finder($title, $user_id){
 function js_redirector($content){
     global $post;
     $personal = get_post_meta($post->ID,'personal-page', true);
-    if (is_user_logged_in() && $personal != 'true'){
+    if (is_user_logged_in() && $personal != 'personal'){
         $title = sanitize_title(wp_get_current_user()->user_login);
-        $url = '<a class="btn btn-primary" href="' . site_url() .'/'. $title . '">Go Here to Enter Your Information</a>';
+        $url = '<a class="btn btn-primary" href="' . site_url() .'/'. $title . '">Click to Enter Information</a>';
         return $content . $url;
     } else {
         return $content;
