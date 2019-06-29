@@ -99,14 +99,15 @@ DISPLAY STUFF
 
 //[foobar]
 function build_tenure_table(){
-    $html = '<h2>Previous Entries</h2>';
     // $search_criteria = array();
     // $sorting         = array();
     // $paging          = array( 'offset' => 0, 'page_size' => 500 );
     // $total_count     = 0;
     //$entries         = GFAPI::get_entries( 1, $search_criteria, $sorting, $paging, $total_count );
     //print("<pre>".print_r($entries,true)."</pre>");
+    $html = '';
     if( have_rows('faculty_record', get_the_ID()) ):
+            $html = '<h2>Previous Entries</h2>';
 
             // loop through the rows of data
             while ( have_rows('faculty_record') ) : the_row();
@@ -243,25 +244,28 @@ function user_is_member(){
         $user_id = get_current_user_id();
         $current_users = get_users();
         $user_ids = [];//create array of user IDs
+        $url = get_site_url();
+        $title = sanitize_title(wp_get_current_user()->user_login);
         foreach ($current_users as $user) {
             array_push($user_ids, $user->ID);
         }
         //var_dump($user_ids);
         if (in_array($user_id, $user_ids)) {
-            $title = sanitize_title(wp_get_current_user()->user_login);
             data_post_finder($title, $user_id);
+            //wp_redirect($url . '/' . $title); exit;
         } else {
             $blog_id = get_current_blog_id();
             kstad_add_user_to_blog($user_id, $blog_id);
-            wp_redirect($title); exit;
+            //wp_redirect($url . '/' . $title); exit;
+            data_post_finder($title, $user_id);
         }
     }  else {
         return 'Please login.';
     }
 }
 
-add_shortcode( 'mem', 'user_is_member' );
-
+//add_shortcode( 'mem', 'user_is_member' );
+add_action('template_redirect', 'user_is_member');
 
 
 function data_post_maker($title, $user_id){
