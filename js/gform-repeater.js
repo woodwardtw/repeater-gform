@@ -340,7 +340,4 @@ function endAutocomplete(){
   let fields = document.querySelectorAll('input');
   console.log(fields)
   fields[0].attributes.autocomplete = "autocomplete_off_hack";
-
 }
-
-endAutocomplete()

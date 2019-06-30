@@ -399,6 +399,8 @@ if( function_exists('acf_add_options_page') ) {
     
 }
 
+
+//display faculty directions
 function acf_faculty_directions($content){
     $post_id = $GLOBALS['post']->ID;    
     if(get_post_meta($post_id,'personal-page', true)){
@@ -410,3 +412,19 @@ function acf_faculty_directions($content){
 }
 
 add_filter ('the_content', 'acf_faculty_directions');
+
+
+//add button for info
+add_filter('the_title', 'modify_faculty_titles', 10, 2);
+
+function modify_faculty_titles($title, $id) {
+  $post_id = $GLOBALS['post']->ID;    
+    if(get_post_meta($post_id,'personal-page', true)){
+        $details = '<button class="info" aria-label="extra information" data-toggle="modal" data-target="#cat-details"><i class="fa fa-info-circle" aria-hidden="true"></i></button>';
+        return $title . $details;
+    } else {
+        return $title;
+    }
+}
+
+

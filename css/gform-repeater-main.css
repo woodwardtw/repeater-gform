@@ -73,6 +73,17 @@
   cursor: pointer;
 }
 
+button.info {
+  font-size: .8em;
+  float: right;
+  border: none;
+  display: block;
+}
+
+button.info:hover {
+  cursor: pointer;
+}
+
 /*jquery autocomplete ui styling*/
 
 #ui-id-1 ul, .ui-autocomplete {
