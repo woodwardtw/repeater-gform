@@ -404,7 +404,7 @@ if( function_exists('acf_add_options_page') ) {
 function acf_faculty_directions($content){
     $post_id = $GLOBALS['post']->ID;    
     if(get_post_meta($post_id,'personal-page', true)){
-        $directions = the_field('faculty_directions', 'options');
+        $directions = get_field('faculty_directions', 'options');
         return $directions . $content;
     } else {
         return $content;
@@ -427,4 +427,11 @@ function modify_faculty_titles($title, $id) {
     }
 }
 
+
+add_filter('wp_footer', 'category_modal_content', 10, 2);
+
+function category_modal_content (){
+$key = get_field('category_key', 'options');
+echo '<div class="modal fade" id="cat-details" tabindex="-1" role="dialog" aria-labelledby="catModalLabel" aria-hidden="true"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="catModalLabel">Details</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body">'.  $key .'</div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div></div></div></div>';
+}
 
