@@ -392,10 +392,12 @@ add_filter( 'acf/settings/remove_wp_meta_box', '__return_false' );
 if( function_exists('acf_add_options_page') ) {
     
     acf_add_options_page(array(
-        'page_title'    => 'General Settings',
+        'page_title'    => 'KSTAD Settings',
         'menu_title'    => 'KSTAD Settings',
-        'menu_slug'     => 'general-settings'
+        'menu_slug'     => 'KSTAD-settings',
+        'redirect'  => false
     ));
+  
     
 }
 
@@ -428,10 +430,11 @@ function modify_faculty_titles($title, $id) {
 }
 
 
+
 add_filter('wp_footer', 'category_modal_content', 10, 2);
 
 function category_modal_content (){
 $key = get_field('category_key', 'options');
-echo '<div class="modal fade" id="cat-details" tabindex="-1" role="dialog" aria-labelledby="catModalLabel" aria-hidden="true"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="catModalLabel">Details</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body">'.  $key .'</div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div></div></div></div>';
+echo '<div class="modal fade bd-example-modal-lg" id="cat-details" tabindex="-1" role="dialog" aria-labelledby="catModalLabel" aria-hidden="true"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="catModalLabel">Details</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body">'.  $key .'</div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div></div></div></div>';
 }
 

@@ -46,7 +46,7 @@
             {
                 "param": "options_page",
                 "operator": "==",
-                "value": "general-settings"
+                "value": "KSTAD-settings"
             }
         ]
     ],
@@ -58,5 +58,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1561894257
+    "modified": 1561898328
 }

@@ -84,6 +84,12 @@ button.info:hover {
   cursor: pointer;
 }
 
+.modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: rgba(0,0,0,.3);
+}
+
 /*jquery autocomplete ui styling*/
 
 #ui-id-1 ul, .ui-autocomplete {
