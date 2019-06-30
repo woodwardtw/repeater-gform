@@ -386,3 +386,27 @@ add_action( 'admin_init', 'add_author_theme_caps');
 
 //show acf fields
 add_filter( 'acf/settings/remove_wp_meta_box', '__return_false' );
+
+
+//acf options page
+if( function_exists('acf_add_options_page') ) {
+    
+    acf_add_options_page(array(
+        'page_title'    => 'General Settings',
+        'menu_title'    => 'KSTAD Settings',
+        'menu_slug'     => 'general-settings'
+    ));
+    
+}
+
+function acf_faculty_directions($content){
+    $post_id = $GLOBALS['post']->ID;    
+    if(get_post_meta($post_id,'personal-page', true)){
+        $directions = the_field('faculty_directions', 'options');
+        return $directions . $content;
+    } else {
+        return $content;
+    }
+}
+
+add_filter ('the_content', 'acf_faculty_directions');

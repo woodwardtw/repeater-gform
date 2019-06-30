@@ -1,0 +1,62 @@
+{
+    "key": "group_5d189c0e147db",
+    "title": "Options Page",
+    "fields": [
+        {
+            "key": "field_5d189c2522053",
+            "label": "Directions at the top of each faculty page.",
+            "name": "faculty_directions",
+            "type": "wysiwyg",
+            "instructions": "The information entered here will show at the top of each faculty page.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_5d189c4e8e472",
+            "label": "Category Key",
+            "name": "category_key",
+            "type": "wysiwyg",
+            "instructions": "The information entered here will appear when someone clicks on they ? icon.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "general-settings"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1561894257
+}
