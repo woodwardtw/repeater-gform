@@ -417,17 +417,18 @@ add_filter ('the_content', 'acf_faculty_directions');
 
 
 //add button for info
-add_filter('the_title', 'modify_faculty_titles', 10, 2);
+add_filter('wp_content', 'modify_faculty_titles', 10, 2);
 
-function modify_faculty_titles($title, $id) {
+function modify_faculty_titles($content) {
   $post_id = $GLOBALS['post']->ID;    
     if(get_post_meta($post_id,'personal-page', true)){
         $details = '<button class="info" aria-label="extra information" data-toggle="modal" data-target="#cat-details"><i class="fa fa-info-circle" aria-hidden="true"></i></button>';
-        return $title . $details;
+        return $details . $content ;
     } else {
-        return $title;
+        return $content;
     }
 }
+add_filter ('the_content', 'modify_faculty_titles');
 
 
 
