@@ -33,17 +33,8 @@ function prefix_load_scripts() {
     //REMBER TO CHANGE THIS TO ID 1
 add_filter( 'gform_form_post_get_meta_1', 'add_my_field' );
 function add_my_field( $form ) {
- 
-    // Create a Single Line text field for the title
-    $title = GF_Fields::create( array(
-        'type'   => 'text',
-        'id'     => 1002, // The Field ID must be unique on the form
-        'formId' => $form['id'],
-        'label'  => 'Activity Title',
-        'pageNumber'  => 1, // Ensure this is correct
-    ) );
- 
-    // Create a category for the evidence
+
+     // Create a category for the evidence
     $description = GF_Fields::create( array(
         'type'   => 'text',
         'id'     => 1001, // The Field ID must be unique on the form
@@ -52,6 +43,16 @@ function add_my_field( $form ) {
         'cssClass' => 'fish',
         'pageNumber'  => 1, // Ensure this is correct        
     ) );
+ 
+    // Create a Single Line text field for the title
+    $title = GF_Fields::create( array(
+        'type'   => 'text',
+        'id'     => 1002, // The Field ID must be unique on the form
+        'formId' => $form['id'],
+        'label'  => 'Activity Details',
+        'pageNumber'  => 1, // Ensure this is correct
+    ) );
+    
 
     $year = GF_Fields::create( array(
         'type'   => 'number',
@@ -72,7 +73,7 @@ function add_my_field( $form ) {
         'removeButtonText' => 'Remove item', // Optional
         //'maxItems'         => 3, // Optional
         'pageNumber'       => 1, // Ensure this is correct
-        'fields'           => array( $title, $description, $year ), // Add the fields here.
+        'fields'           => array(  $description, $title, $year ), // Add the fields here.
     ) );
  
     $form['fields'][] = $evidence;
