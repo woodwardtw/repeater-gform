@@ -49,6 +49,7 @@ function add_my_field( $form ) {
         'id'     => 1001, // The Field ID must be unique on the form
         'formId' => $form['id'],
         'label'  => 'Activity Category',
+        'cssClass' => 'fish',
         'pageNumber'  => 1, // Ensure this is correct        
     ) );
 
@@ -242,6 +243,7 @@ function my_acf_json_load_point( $paths ) {
 //USER IS there?
 
 function user_is_member(){
+    global $post;
     if (is_user_logged_in()){
         $user_id = get_current_user_id();
         $current_users = get_users();
@@ -254,11 +256,17 @@ function user_is_member(){
         //var_dump($user_ids);
         if (in_array($user_id, $user_ids)) {
             data_post_finder($title, $user_id);
-            //wp_redirect($url . '/' . $title); exit;
+            if($post->post_name != $title){
+                wp_redirect($url . '/' . $title); 
+                exit;
+            }
         } else {
             $blog_id = get_current_blog_id();
             kstad_add_user_to_blog($user_id, $blog_id);
-            //wp_redirect($url . '/' . $title); exit;
+            if($post->post_name != $title){
+                wp_redirect($url . '/' . $title); 
+                exit;
+            }
             data_post_finder($title, $user_id);
         }
     }  else {
@@ -438,4 +446,5 @@ function category_modal_content (){
 $key = get_field('category_key', 'options');
 echo '<div class="modal fade bd-example-modal-lg" id="cat-details" tabindex="-1" role="dialog" aria-labelledby="catModalLabel" aria-hidden="true"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="catModalLabel">Details</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body">'.  $key .'</div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div></div></div></div>';
 }
+
 
