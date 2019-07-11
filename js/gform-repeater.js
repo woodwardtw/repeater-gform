@@ -55,12 +55,15 @@ observer.observe(document, {
 
 
 
+
 function showList(listId,searchId){
   let searcher = document.getElementById(searchId)
-  if ( searcher.value.length > 1) {
-    //console.log(searcher.value.length)
+  if ( searcher === document.activeElement || searcher.value.length >1 ) { 
+    console.log('active')
     document.getElementById(listId).classList.add('show')
-  } if ( searcher.value.length === 0 ){
+  } 
+
+  if ( searcher.value.length === 0 || searcher != document.activeElement ){
      document.getElementById(listId).classList.remove('show')
      document.getElementById(searchId).classList.remove('chosen')
   }
