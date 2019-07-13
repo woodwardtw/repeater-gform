@@ -1,3 +1,28 @@
+jQuery( document ).on( 'click', '.delete', function() {
+
+    let rownumjs = jQuery(this).data("row");
+    console.log('row num');
+    console.log(rownumjs);
+    let id = jQuery(this).data("id");
+    console.log('post id');
+    console.log(id);
+
+    jQuery.post(             
+            ajaxurl,
+            {
+                'action': 'repeater_editor',
+                'row': rownumjs,
+                'id': id,
+            }
+            ,
+            function(response){
+                    console.log(response);
+            }
+    );
+
+});
+
+
 //watch page
 MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
 
@@ -53,8 +78,6 @@ observer.observe(document, {
   attributes: true
   //...
 });
-
-
 
 
 function showList(listId,searchId){
@@ -345,3 +368,5 @@ const items = [
     description: 'Teaching all'
   }
 ];
+
+

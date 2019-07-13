@@ -14,20 +14,22 @@ Text Domain: my-toolset
 */
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
-
 add_action('wp_enqueue_scripts', 'prefix_load_scripts');
 
 function prefix_load_scripts() {                           
+    global $post;
     $deps = array('jquery');
     $version= '1.0'; 
     $in_footer = true;
     wp_enqueue_script('list-js', 'https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js', $deps, $version, $in_footer);  
     wp_enqueue_script('jqueryUI', 'https://code.jquery.com/ui/1.12.1/jquery-ui.js', $deps, $version, $in_footer);     
     wp_enqueue_script('gform-repeater-js', plugin_dir_url( __FILE__) . 'js/gform-repeater.js', $deps, $version, $in_footer); 
+    wp_localize_script('gform-repeater-js', 'ajaxurl', admin_url( 'admin-ajax.php' ) );  
     wp_enqueue_style( 'gform-repeater-main-css', plugin_dir_url( __FILE__) . 'css/gform-repeater-main.css');
     wp_enqueue_style( 'jqueryUI-css', 'https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
-
 }
+
+
 
 // Adjust your form ID
     //REMBER TO CHANGE THIS TO ID 1
@@ -119,7 +121,7 @@ function build_tenure_table(){
                 $record_title = get_sub_field('record_title');
                 $record_category = get_sub_field('record_category');
                 $record_year = get_sub_field('record_year');
-                $html .= specific_tenure_records($record_title, $record_category, $record_year);
+                $html .= specific_tenure_records($record_title, $record_category, $record_year, get_row_index());
             endwhile;
 
         else :
@@ -141,15 +143,17 @@ add_shortcode( 'repeater-table', 'build_tenure_table' );
 function all_tenure_records($first_name, $last_name, $array){
     $html = '';
     foreach ($array as $key => $record) {
-        $html .=  '<div class="row tenure-record"><div class="col-md-2">' . $first_name .'</div><div class="col-md-2">' . $last_name .'</div><div class="col-md-5">' . $record['1002'] .'</div><div class="col-md-5">' . $record['1001'] .'</div><div class="col-md-5">' . $record['1003'] . '</div></div>';
+        $html .=  '<div class="row tenure-record"><div class="col-md-2">' . $first_name .'</div><div class="col-md-2">' . $last_name .'</div><div class="col-md-5">' . $record['1002'] .'</div><div class="col-md-5">' . $record['1001'] .'</div><div class="col-md-5">' . $record['1003'] . '<button class="delete" id="delete-'.$key.'" data-row="'.$key.'">x</button></div></div>';
     }
     return $html;
 }
 
 
-function specific_tenure_records($title, $category, $year){
+function specific_tenure_records($title, $category, $year, $row_index){
+    global $post;
+    $post_id = $post->ID;
     $html = '';
-        $html .=  '<div class="row tenure-record"><div class="col-md-2">' . $year .'</div><div class="col-md-5">' . $title .'</div><div class="col-md-5">' . $category .'</div></div>';
+        $html .=  '<div class="row tenure-record"><div class="col-md-2">' . $year .'</div><div class="col-md-5">' . $title .'</div><div class="col-md-5">' . $category .'<button class="delete" id="delete-' . $row_index . '" data-row="' . $row_index . '" " data-id="' . $post_id . '">x</button></div></div>';
     return $html;
 }
 
@@ -449,3 +453,13 @@ echo '<div class="modal fade bd-example-modal-lg" id="cat-details" tabindex="-1"
 }
 
 
+add_action( 'wp_ajax_repeater_editor', 'repeater_editor' );
+
+
+//delete that row
+function repeater_editor(){
+    $post_id = (int) $_POST['id'];
+    $row = (int) $_POST['row'];
+
+    delete_row("field_5cf50e404b399", $row, $post_id); //functional 
+}    
