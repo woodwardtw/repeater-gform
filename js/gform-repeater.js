@@ -1,33 +1,33 @@
 jQuery( document ).on( 'click', '.delete', function() {
 
-    var rownumjs = jQuery(this).data("row");
-    console.log('row num');
-    console.log(rownumjs);
+    var rownumjs = jQuery(this).data("row");   
     var id = jQuery(this).data("id");
-    console.log('post id');
-    console.log(id);
-
-    jQuery.post(             
-            ajaxurl,
-            {
-                'action': 'repeater_editor',
-                'row': rownumjs,
-                'id': id,
-            }
-            ,
-            function(response){
-                console.log(response);            
-                //hideDeletedRow(id);
-                window.location = window.location.href;
-            }
-    );
+    //hideDeletedRow(rownumjs);
+    var confirmThis = confirm("Clicking ok will delete this row of data.");
+    if (confirmThis == true) {
+      jQuery.post(             
+              ajaxurl,
+              {
+                  'action': 'repeater_editor',
+                  'row': rownumjs,
+                  'id': id,
+              }
+              ,
+              function(response){
+                  console.log(response);            
+                  window.location = window.location.href;
+              }
+      );
+    }
 
 });
 
 function hideDeletedRow(id){
     console.log('hider?');
-    let row = document.getElementById('tenure-row-'+id);
-    row.classList.add('hidden')    
+    console.log(id);//tenure-row-1
+    console.log(document.getElementById('tenure-row-'+id));
+    var row = document.getElementById('tenure-row-'+id);
+    row.classList.add('mark-for-deletion')    
 }
 
 //watch page
@@ -377,3 +377,4 @@ const items = [
 ];
 
 
+jQuery('[data-toggle="tooltip"]').tooltip(); //tooltip

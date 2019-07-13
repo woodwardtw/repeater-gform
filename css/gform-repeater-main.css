@@ -119,7 +119,7 @@ button.info:hover {
   border: none;
   width: 30px;
   height: 30px;
-  background-color: red;
+  background-color: #000;
   color: #fff;
   margin-left: 20px;
   border-radius: 50%;
@@ -131,4 +131,8 @@ button.info:hover {
 .delete:hover {
   cursor: pointer;
   background-color: #b70707;
+}
+
+.mark-for-deletion {
+  background-color: red;
 }
