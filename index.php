@@ -153,7 +153,7 @@ function specific_tenure_records($title, $category, $year, $row_index){
     global $post;
     $post_id = $post->ID;
     $html = '';
-        $html .=  '<div class="row tenure-record"><div class="col-md-2">' . $year .'</div><div class="col-md-5">' . $title .'</div><div class="col-md-5">' . $category .'<button class="delete" id="delete-' . $row_index . '" data-row="' . $row_index . '" " data-id="' . $post_id . '">x</button></div></div>';
+        $html .=  '<div class="row tenure-record" id="tenure-row-'. $row_index . '"><div class="col-md-2">' . $year .'</div><div class="col-md-5">' . $title .'</div><div class="col-md-5">' . $category .'<button class="delete" id="delete-' . $row_index . '" data-row="' . $row_index . '" " data-id="' . $post_id . '">x</button></div></div>';
     return $html;
 }
 

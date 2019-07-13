@@ -1,9 +1,9 @@
 jQuery( document ).on( 'click', '.delete', function() {
 
-    let rownumjs = jQuery(this).data("row");
+    var rownumjs = jQuery(this).data("row");
     console.log('row num');
     console.log(rownumjs);
-    let id = jQuery(this).data("id");
+    var id = jQuery(this).data("id");
     console.log('post id');
     console.log(id);
 
@@ -16,12 +16,19 @@ jQuery( document ).on( 'click', '.delete', function() {
             }
             ,
             function(response){
-                    console.log(response);
+                console.log(response);            
+                //hideDeletedRow(id);
+                window.location = window.location.href;
             }
     );
 
 });
 
+function hideDeletedRow(id){
+    console.log('hider?');
+    let row = document.getElementById('tenure-row-'+id);
+    row.classList.add('hidden')    
+}
 
 //watch page
 MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
