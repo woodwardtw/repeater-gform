@@ -30,6 +30,7 @@ MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
     });
     }
   })
+  //year field
   jQuery( function() {
     var availableTags = [
       "2016",
@@ -81,7 +82,7 @@ function chooseIt(e){
   //document.getElementById('the-list').style.opacity = '0'
   let stringLeng = fieldId.length;
   let theItem = fieldId.substring(13,stringLeng); //input_1_1001-0
-  document.getElementById('input_1_1003-'+theItem).focus(); //change focus to next element
+  document.getElementById('input_1_1002-'+theItem).focus(); //change focus to next element
 }
 
 
