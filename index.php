@@ -197,7 +197,7 @@ function all_make_tenure_records($post_id, $author){
 
 function data_edit_post($post_id){
     //wp-admin/post.php?post=61&action=edit
-    $url = get_site_url() . '/wp-admin/post.php?post=61&action=edit';
+    $url = get_site_url() . '/wp-admin/post.php?post=61&action=edit#acf-group_5cf50e360aba8';
     return '<a href="' . $url . '">edit</a>';
 }
 
