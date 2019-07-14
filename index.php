@@ -149,10 +149,12 @@ function all_tenure_records(){
         'orderby'      => 'title'
     );
     $the_query = new WP_Query ( $args );
+    echo '<h2>' . $the_query->found_posts . '</h2>';
     if ( $the_query->have_posts() ) :
         while ( $the_query->have_posts() ) : $the_query->the_post();
-         $post_id = get_the_ID();
-          all_make_tenure_records($post_id);
+            $post_id = get_the_ID();
+            echo '<h2>' . get_the_title() . '</h2>';
+            echo all_make_tenure_records($post_id);
         endwhile;
     endif;
 
@@ -162,16 +164,16 @@ function all_tenure_records(){
     
 }
 
-function all_make_tenure_records($post_id){
+function all_make_tenure_records($post_id){    
     $html = '';
      if( have_rows('faculty_record', $post_id)):
-            // loop through the rows of data
-            while ( have_rows('faculty_record') ) : the_row();
-            $first_name =  'first'; 
-            $last_name = 'last'; 
-            foreach ($array as $key => $record) {
-                $html .=  '<div class="row tenure-record"><div class="col-md-2">' . $first_name .'</div><div class="col-md-2">' . $last_name .'</div><div class="col-md-5">' . $record['1002'] .'</div><div class="col-md-5">' . $record['1001'] .'</div><div class="col-md-5">' . $record['1003'] . '<button class="delete" id="delete-'.$key.'" data-row="'.$key.'">x</button></div></div>';
-            }
+            // loop through the rows of data                    
+             while ( have_rows('faculty_record') ) : the_row();
+                // display a sub field value               
+                $record_title = get_sub_field('record_title');
+                $record_category = get_sub_field('record_category');
+                $record_year = get_sub_field('record_year');
+                $html .= $record_title . ' ' . $record_year . '<br>'; 
         endwhile;
 
         else :
