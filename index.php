@@ -160,7 +160,7 @@ function all_tenure_records(){
     $the_query = new WP_Query ( $args );
     echo '<h2>' . $the_query->found_posts . '</h2>';
     if ( $the_query->have_posts() ) :
-        echo '<table id="all-data"><tr><th>Name</th><th>Category</th><th>Detail</th><th>Year</th></tr>';
+        echo '<table id="all-data"><tr><th>Name</th><th>Category</th><th>Detail</th><th>Year</th><th>Edit</th></tr>';
         while ( $the_query->have_posts() ) : $the_query->the_post();
             $post_id = get_the_ID();
             $author = get_the_title();            
@@ -184,7 +184,7 @@ function all_make_tenure_records($post_id, $author){
                 $record_title = get_sub_field('record_title');
                 $record_category = get_sub_field('record_category');
                 $record_year = get_sub_field('record_year');
-                $html .= '<tr><td>' . $author . '</td><td>' . $record_category . '</td><td>' . $record_title . '</td><td>' . $record_year . '</td></tr>'; 
+                $html .= '<tr><td>' . $author . '</td><td>' . $record_category . '</td><td>' . $record_title . '</td><td>' . $record_year . '</td><td>' . data_edit_post($post_id) . '</td></tr>'; 
         endwhile;
 
         else :
@@ -193,6 +193,12 @@ function all_make_tenure_records($post_id, $author){
 
     endif;
     return $html;
+}
+
+function data_edit_post($post_id){
+    //wp-admin/post.php?post=61&action=edit
+    $url = get_site_url() . '/wp-admin/post.php?post=61&action=edit';
+    return '<a href="' . $url . '">edit</a>';
 }
 
 add_shortcode( 'all-records', 'all_tenure_records' );
