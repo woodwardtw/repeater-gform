@@ -299,7 +299,7 @@ function user_is_member(){
         //var_dump($user_ids);
         if (in_array($user_id, $user_ids)) {
             data_post_finder($title, $user_id);
-            if($post->post_name != $title && !is_super_admin()){ //stop redirect is superadmin
+            if($post->post_name != $title && !is_super_admin() && !is_admin()){ //stop redirect is superadmin
                 wp_redirect($url . '/' . $title); 
                 exit;
             }
