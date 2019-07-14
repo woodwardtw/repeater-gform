@@ -103,14 +103,8 @@ DISPLAY STUFF
 **
 */
 
-//[foobar]
+//INDIVIDUAL TENURE DISPLAY
 function build_tenure_table(){
-    // $search_criteria = array();
-    // $sorting         = array();
-    // $paging          = array( 'offset' => 0, 'page_size' => 500 );
-    // $total_count     = 0;
-    //$entries         = GFAPI::get_entries( 1, $search_criteria, $sorting, $paging, $total_count );
-    //print("<pre>".print_r($entries,true)."</pre>");
     $html = '';
     if( have_rows('faculty_record', get_the_ID()) ):
             $html = '<h2>Previous Entries</h2>';
@@ -130,24 +124,9 @@ function build_tenure_table(){
 
     endif;
 
-    //     foreach ($entries as $entry) {   
-    //         //print("<pre>".print_r($entry['1000'],true)."</pre>"); //$entry['1000'] == $entry['1.3'] $entry['1.6'] 
-    //         $html .= all_tenure_records( $entry['1.3'] ,  $entry['1.6'], $entry['1000'] );
-    // }
-
     return $html;
 }
 add_shortcode( 'repeater-table', 'build_tenure_table' );
-
-
-function all_tenure_records($first_name, $last_name, $array){
-    $html = '';
-    foreach ($array as $key => $record) {
-        $html .=  '<div class="row tenure-record"><div class="col-md-2">' . $first_name .'</div><div class="col-md-2">' . $last_name .'</div><div class="col-md-5">' . $record['1002'] .'</div><div class="col-md-5">' . $record['1001'] .'</div><div class="col-md-5">' . $record['1003'] . '<button class="delete" id="delete-'.$key.'" data-row="'.$key.'">x</button></div></div>';
-    }
-    return $html;
-}
-
 
 function specific_tenure_records($title, $category, $year, $row_index){
     global $post;
@@ -160,6 +139,53 @@ function specific_tenure_records($title, $category, $year, $row_index){
         $html .= '</div>';
     return $html;
 }
+
+
+//ALL TENURE DISPLAY
+function all_tenure_records(){
+    //add query here
+    $args = array(
+        'post_type'    => 'page',
+        'orderby'      => 'title'
+    );
+    $the_query = new WP_Query ( $args );
+    if ( $the_query->have_posts() ) :
+        while ( $the_query->have_posts() ) : $the_query->the_post();
+         $post_id = get_the_ID();
+          all_make_tenure_records($post_id);
+        endwhile;
+    endif;
+
+        // Reset Post Data
+        wp_reset_postdata();
+
+    
+}
+
+function all_make_tenure_records($post_id){
+    $html = '';
+     if( have_rows('faculty_record', $post_id)):
+            // loop through the rows of data
+            while ( have_rows('faculty_record') ) : the_row();
+            $first_name =  'first'; 
+            $last_name = 'last'; 
+            foreach ($array as $key => $record) {
+                $html .=  '<div class="row tenure-record"><div class="col-md-2">' . $first_name .'</div><div class="col-md-2">' . $last_name .'</div><div class="col-md-5">' . $record['1002'] .'</div><div class="col-md-5">' . $record['1001'] .'</div><div class="col-md-5">' . $record['1003'] . '<button class="delete" id="delete-'.$key.'" data-row="'.$key.'">x</button></div></div>';
+            }
+        endwhile;
+
+        else :
+
+            // no rows found
+
+    endif;
+    return $html;
+}
+
+add_shortcode( 'all-records', 'all_tenure_records' );
+
+
+
 
 /*
 FORM TO ACF 
@@ -265,7 +291,7 @@ function user_is_member(){
         //var_dump($user_ids);
         if (in_array($user_id, $user_ids)) {
             data_post_finder($title, $user_id);
-            if($post->post_name != $title){
+            if($post->post_name != $title && !is_super_admin()){ //stop redirect is superadmin
                 wp_redirect($url . '/' . $title); 
                 exit;
             }
