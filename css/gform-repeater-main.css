@@ -137,7 +137,7 @@ button.info:hover {
   background-color: red;
 }
 
-#all-data td {
+#all-data td, #all-data th {
   padding: 10px;
 }
 

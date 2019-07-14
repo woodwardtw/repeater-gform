@@ -142,6 +142,8 @@ function specific_tenure_records($title, $category, $year, $row_index){
 
 
 //ALL TENURE DISPLAY
+
+//look at export to csv js https://stackoverflow.com/questions/7161113/how-do-i-export-html-table-data-as-csv-file
 function all_tenure_records(){
     //add query here
     $args = array(
@@ -151,7 +153,7 @@ function all_tenure_records(){
     $the_query = new WP_Query ( $args );
     echo '<h2>' . $the_query->found_posts . '</h2>';
     if ( $the_query->have_posts() ) :
-        echo '<table id="all-data">';
+        echo '<table id="all-data"><tr><th>Name</th><th>Category</th><th>Detail</th><th>Year</th></tr>';
         while ( $the_query->have_posts() ) : $the_query->the_post();
             $post_id = get_the_ID();
             $author = get_the_title();            
