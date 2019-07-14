@@ -136,3 +136,11 @@ button.info:hover {
 .mark-for-deletion {
   background-color: red;
 }
+
+#all-data td {
+  padding: 10px;
+}
+
+#all-data tr {
+  border: 1px solid;
+}

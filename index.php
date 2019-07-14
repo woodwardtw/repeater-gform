@@ -151,11 +151,13 @@ function all_tenure_records(){
     $the_query = new WP_Query ( $args );
     echo '<h2>' . $the_query->found_posts . '</h2>';
     if ( $the_query->have_posts() ) :
+        echo '<table id="all-data">';
         while ( $the_query->have_posts() ) : $the_query->the_post();
             $post_id = get_the_ID();
-            echo '<h2>' . get_the_title() . '</h2>';
-            echo all_make_tenure_records($post_id);
+            $author = get_the_title();            
+            echo all_make_tenure_records($post_id, $author);
         endwhile;
+        echo '</table>';
     endif;
 
         // Reset Post Data
@@ -164,7 +166,7 @@ function all_tenure_records(){
     
 }
 
-function all_make_tenure_records($post_id){    
+function all_make_tenure_records($post_id, $author){    
     $html = '';
      if( have_rows('faculty_record', $post_id)):
             // loop through the rows of data                    
@@ -173,7 +175,7 @@ function all_make_tenure_records($post_id){
                 $record_title = get_sub_field('record_title');
                 $record_category = get_sub_field('record_category');
                 $record_year = get_sub_field('record_year');
-                $html .= $record_title . ' ' . $record_year . '<br>'; 
+                $html .= '<tr><td>' . $author . '</td><td>' . $record_category . '</td><td>' . $record_title . '</td><td>' . $record_year . '</td></tr>'; 
         endwhile;
 
         else :
