@@ -148,7 +148,9 @@ function all_tenure_records(){
     //add query here
     $args = array(
         'post_type'    => 'page',
-        'orderby'      => 'title'
+        'orderby'      => 'title',
+        'order' => 'ASC',
+        'posts_per_page' => -1,
     );
     $the_query = new WP_Query ( $args );
     echo '<h2>' . $the_query->found_posts . '</h2>';
@@ -356,20 +358,20 @@ function data_post_finder($title, $user_id){
 }
 
 
-//FRONT PAGE BUTTON FOR DIRECTING TO SPECIFIC PAGE
-function js_redirector($content){
-    global $post;
-    $personal = get_post_meta($post->ID,'personal-page', true);
-    if (is_user_logged_in() && $personal != 'personal'){
-        $title = sanitize_title(wp_get_current_user()->user_login);
-        $url = '<a class="btn btn-primary" href="' . site_url() .'/'. $title . '">Click to Enter Information</a>';
-        return $content . $url;
-    } else {
-        return $content;
-    }
-}
+//FRONT PAGE BUTTON FOR DIRECTING TO SPECIFIC PAGE  - PROBABLY NOT NEEDED ANY MORE
+// function js_redirector($content){
+//     global $post;
+//     $personal = get_post_meta($post->ID,'personal-page', true);
+//     if (is_user_logged_in() && $personal != 'personal'){
+//         $title = sanitize_title(wp_get_current_user()->user_login);
+//         $url = '<a class="btn btn-primary" href="' . site_url() .'/'. $title . '">Click to Enter Information</a>';
+//         return $content . $url;
+//     } else {
+//         return $content;
+//     }
+// }
 
-add_filter( 'the_content', 'js_redirector' );
+//add_filter( 'the_content', 'js_redirector' );
 
 
 //CONTENT VIEW RESTRICTOR 
