@@ -131,12 +131,17 @@ add_shortcode( 'repeater-table', 'build_tenure_table' );
 function specific_tenure_records($title, $category, $year, $row_index){
     global $post;
     $post_id = $post->ID;
+    $current_user = get_current_user_id();
+    $author_id = get_the_author_meta('ID');
     $html = '';
         $html .= '<div class="row tenure-record" id="tenure-row-'. $row_index . '">';
         $html .= '<div class="col-md-2">' . $year .'</div>';
         $html .= '<div class="col-md-5">' . $title .'</div><div class="col-md-4">' . $category .'</div>';
-        $html .= '<div class="col-md-1"><button class="delete" id="delete-' . $row_index . '" data-row="' . $row_index . '" " data-id="' . $post_id . '" data-toggle="tooltip" title="Delete this row.">x</button></div>';
-        $html .= '</div>';
+        $html .= '<div class="col-md-1">';
+        if( $author_id === $current_user || is_admin() || is_super_admin()){
+            $html .= '<button class="delete" id="delete-' . $row_index . '" data-row="' . $row_index . '" " data-id="' . $post_id . '" data-toggle="tooltip" title="Delete this row.">x</button>';
+        }
+        $html .= '</div></div>';
     return $html;
 }
 
