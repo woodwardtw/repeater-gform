@@ -137,6 +137,10 @@ button.info:hover {
   background-color: red;
 }
 
+#all-data {
+  margin: auto;
+}
+
 #all-data td, #all-data th {
   padding: 10px;
 }
