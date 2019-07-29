@@ -6,16 +6,6 @@
 	display: block;
 }
 
-.tenure-list {
-  height: 0px;
-  opacity: 0;
-  width: 0px;
-  overflow: hidden;
-  display: none;
-  padding: 10px;
-  border: 1px solid;
-}
-
 .show {
   display:block;
   height:auto;
@@ -35,19 +25,6 @@
   background-color: #bdf1ba;
 }
 
-.tenure-list li {
-  list-style-type: none;
-  border-bottom: 1px solid #efefef;
-  margin-bottom: 10px;
-  padding: 10px 20px;
-  transition: all .4s;
-  word-wrap: normal;
-}
-
-.tenure-list li:hover {
-  background-color: #bdf1ba;
-  cursor: pointer;
-}
 
 .tenure-record div {
 	border-bottom: 1px solid #efefef;
@@ -90,30 +67,6 @@ button.info:hover {
     background-color: rgba(0,0,0,.3);
 }
 
-/*jquery autocomplete ui styling*/
-
-#ui-id-1 ul, .ui-autocomplete {
-  list-style-type: none;  
-  padding-left: 0;
-  margin-left: 0;
-  border: 1px solid #000;
-  padding: 5px;
-  display: block;
-  width: 220px;
-  background-color: #fff;
-}
-
-#ui-id-1 li {
-  display: block;
-  padding: 7px 10px;
-  width: 200px;
-  border-bottom: 1px solid #efefef;
-}
-
-#ui-id-1 li:hover, #ui-id-1 li:focus {
-    background-color: #bdf1ba;
-    cursor: pointer;
-}
 
 .delete {
   border: none;
@@ -147,4 +100,15 @@ button.info:hover {
 
 #all-data tr {
   border: 1px solid;
+}
+
+/*jquery auto complete land*/
+
+.ui-menu-item {
+   border-bottom: 1px solid #424242 !important;
+}
+
+#ui-id-1 ul, .ui-autocomplete {
+  width: 320px;
+  background-color: #fff;
 }
