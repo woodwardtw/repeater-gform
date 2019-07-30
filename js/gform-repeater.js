@@ -32,30 +32,7 @@ function hideDeletedRow(id){
 }
 
 
-// //watch page
-// MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
-
-//   var observer = new MutationObserver(function(mutations, observer) {
-//       // fired when a mutation occurs
-//       //console.log(mutations, observer);
-  //     let theInputs = document.querySelectorAll('input');
-  //      theInputs.forEach(function(input,index){
-  //       var theId = input.id;
-  //       var mainId = theId.substring(0, 12);
-
-  //       if (mainId === 'input_1_1001' && !document.getElementById('list-'+index)){          
-  //         categoryDropDown(theId, categoriesKstad)
-  //       }
-  //       if (mainId === 'input_1_1003' && !document.getElementById('list-'+index)){
-  //         yearDropDown(theId)
-  //       }
-
-  // })
-
-
-
-// });
-
+//WATCH FOR ADDITIONS
 //FROM https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver
   // Select the node that will be observed for mutations
 const targetNode = document.getElementById('gform_wrapper_1');
@@ -98,14 +75,6 @@ function dropDownMaker(){
 }
 
 
-
-// // define what element should be observed by the observer
-// // and what types of mutations trigger the callback
-// observer.observe(document, {
-//   subtree: true,
-//   attributes: true
-//   //...
-// });
 
 function categoryDropDown(id, categories){
   jQuery( function() {
