@@ -396,7 +396,7 @@ function filter_all_pages($content){
                 return $content;//show the logged data option
             }
             else {
-                return 'Content restricted.';
+                return 'Content restricted. Please <a href="' . wp_login_url().'" title="login">login</a>';
             }
         } else {
             return $content;
