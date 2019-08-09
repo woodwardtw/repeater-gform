@@ -108,7 +108,12 @@ button.info:hover {
    border-bottom: 1px solid #424242 !important;
 }
 
-#ui-id-1 ul, .ui-autocomplete {
-  width: 320px;
+.ginput_container_text #ui-id-1 ul, .ui-autocomplete {
+  width: 340px;
+  background-color: #fff;
+}
+
+.ginput_container_number #ui-id-1 ul, .ginput_container_number .ui-autocomplete {
+  width: 140px;
   background-color: #fff;
 }
