@@ -27,6 +27,10 @@ function prefix_load_scripts() {
     wp_localize_script('gform-repeater-js', 'ajaxurl', admin_url( 'admin-ajax.php' ) );  
     wp_enqueue_style( 'gform-repeater-main-css', plugin_dir_url( __FILE__) . 'css/gform-repeater-main.css');
     wp_enqueue_style( 'jqueryUI-css', 'https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
+    wp_localize_script('gform-repeater-js', 'ajax_var', array(
+            'url' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('ajax-nonce')
+        ));
 }
 
 
@@ -160,7 +164,7 @@ function all_tenure_records(){
     $the_query = new WP_Query ( $args );
     echo '<h2>' . $the_query->found_posts . '</h2>';
     if ( $the_query->have_posts() ) :
-        echo '<table id="all-data"><tr><th>Name</th><th>Category</th><th>Detail</th><th>Year</th><th>Edit</th></tr>';
+        echo '<table id="all-data"><tr><th>Name</th><th>Category</th><th>Detail</th><th>Year</th><th>Edit</th><th>Recorded</th></tr>';
         while ( $the_query->have_posts() ) : $the_query->the_post();
             $post_id = get_the_ID();
             $author = get_the_title();            
@@ -184,7 +188,8 @@ function all_make_tenure_records($post_id, $author){
                 $record_title = get_sub_field('record_title');
                 $record_category = get_sub_field('record_category');
                 $record_year = get_sub_field('record_year');
-                $html .= '<tr><td>' . $author . '</td><td>' . $record_category . '</td><td>' . $record_title . '</td><td>' . $record_year . '</td><td>' . data_edit_post($post_id) . '</td></tr>'; 
+                $record_recorded = get_sub_field('recorded');
+                $html .= '<tr><td>' . $author . '</td><td>' . $record_category . '</td><td>' . $record_title . '</td><td>' . $record_year . '</td><td>' . data_edit_post($post_id) . '</td><td><input class="recorded" type="checkbox" data-post_id="'.$post_id.'" data-row="' . get_row_index() . '" data-checked="' . $record_recorded . '" name="recorded-'. get_row_index().'" ' . recorded_checkbox($record_recorded) . '></td></tr>'; 
         endwhile;
 
         else :
@@ -201,9 +206,33 @@ function data_edit_post($post_id){
     return '<a href="' . $url . '">edit</a>';
 }
 
+function recorded_checkbox($state){
+    if ($state){
+         if ($state == 'Yes' || $state == 'yes'){
+        return 'checked';
+        }
+    }   
+}
+
 add_shortcode( 'all-records', 'all_tenure_records' );
 
+add_action('wp_ajax_update-recorded-status', 'update_recorded_status');
 
+function update_recorded_status(){
+     $nonce = $_POST['nonce'];
+   
+    // if ( ! wp_verify_nonce( $nonce, 'ajax-nonce' ) )
+    //     die ( 'Busted!');
+     
+    //if(isset($_POST['update-recorded-status'])){
+        //write_log("The post id is {$_POST['post_id']} and the row is {$_POST['row']} status is {$_POST['status']} ");
+
+        $post_id = $_POST['post_id'];
+        $row = $_POST['row'];
+        $status = $_POST['status'];
+        update_sub_field( array('field_5cf50e404b399', $row, 'field_5d8813a24f8d6'), $status, $post_id);
+    //}
+}
 
 
 /*
@@ -512,3 +541,14 @@ function repeater_editor(){
 
     delete_row("field_5cf50e404b399", $row, $post_id); //functional 
 }    
+
+
+if ( ! function_exists('write_log')) {
+   function write_log ( $log )  {
+      if ( is_array( $log ) || is_object( $log ) ) {
+         error_log( print_r( $log, true ) );
+      } else {
+         error_log( $log );
+      }
+   }
+}

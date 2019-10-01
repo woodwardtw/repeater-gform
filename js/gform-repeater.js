@@ -55,7 +55,9 @@ const callback = function(mutationsList, observer) {
 const observer = new MutationObserver(callback);
 
 // Start observing the target node for configured mutations
-observer.observe(targetNode, config);
+if(!document.getElementById('all-data')){
+  observer.observe(targetNode, config);
+}
 
 function dropDownMaker(){
         let theInputs = document.querySelectorAll('input');
@@ -161,4 +163,31 @@ const categoriesKstad = [
 
 
 jQuery('[data-toggle="tooltip"]').tooltip(); //tooltip
+
+
+//RECORDED or NOT
+jQuery(document).ready(function() {
+ 
+    jQuery(".recorded").change(function(){
+ // Ajax call
+      console.log(this)
+      const post_id = this.dataset.post_id
+      const row = this.dataset.row
+      const state = this.dataset.checked
+      if (state == 'yes'){
+        var status = 'no'
+      } else {
+        var status = 'yes'
+      }
+
+        jQuery.ajax({
+            type: "post",
+            url: ajax_var.url,
+            data: "action=update-recorded-status&nonce="+ajax_var.nonce+"&post_id="+post_id+"&row="+row+"&status="+status,            
+            success: function(){
+               alert('updated')
+            }
+        });
+      })
+  })
 
