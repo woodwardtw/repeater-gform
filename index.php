@@ -155,26 +155,30 @@ function specific_tenure_records($title, $category, $year, $row_index){
 //look at export to csv js https://stackoverflow.com/questions/7161113/how-do-i-export-html-table-data-as-csv-file
 function all_tenure_records(){
     //add query here
-    $args = array(
-        'post_type'    => 'page',
-        'orderby'      => 'title',
-        'order' => 'ASC',
-        'posts_per_page' => -1,
-    );
-    $the_query = new WP_Query ( $args );
-    echo '<h2>' . $the_query->found_posts . '</h2>';
-    if ( $the_query->have_posts() ) :
-        echo '<table id="all-data"><tr><th>Name</th><th>Category</th><th>Detail</th><th>Year</th><th>Edit</th><th>Recorded</th></tr>';
-        while ( $the_query->have_posts() ) : $the_query->the_post();
-            $post_id = get_the_ID();
-            $author = get_the_title();            
-            echo all_make_tenure_records($post_id, $author);
-        endwhile;
-        echo '</table>';
-    endif;
+     if(!is_user_logged_in()){
+        return '<a href="https://hhk3test.hotell.kau.se/gather-data/wp-admin/">Please Login</a>';
+    } else {
+        $args = array(
+            'post_type'    => 'page',
+            'orderby'      => 'title',
+            'order' => 'ASC',
+            'posts_per_page' => -1,
+        );
+        $the_query = new WP_Query ( $args );
+        echo '<h2>' . $the_query->found_posts . '</h2>';
+        if ( $the_query->have_posts() ) :
+            echo '<table id="all-data"><tr><th>Name</th><th>Category</th><th>Detail</th><th>Year</th><th>Edit</th><th>Recorded</th></tr>';
+            while ( $the_query->have_posts() ) : $the_query->the_post();
+                $post_id = get_the_ID();
+                $author = get_the_title();            
+                echo all_make_tenure_records($post_id, $author);
+            endwhile;
+            echo '</table>';
+        endif;
 
-        // Reset Post Data
-        wp_reset_postdata();
+            // Reset Post Data
+            wp_reset_postdata();
+        }
 
     
 }
@@ -242,17 +246,17 @@ FORM TO ACF
 add_action( 'gform_after_submission_1', 'update_record', 10, 2 );
 
 function update_record($entry, $form){
-	global $post;
-	$post_id = $post->ID;
-	$array = $entry['1000'];
-	    foreach ($array as $key => $record) {
-			$row = array(
-				'record_title' => $record['1002'],
-				'record_category' => $record['1001'] ,
-				'record_year' => $record['1003'],
-			);
-			 add_row('faculty_record', $row, $post_id);
-		}
+    global $post;
+    $post_id = $post->ID;
+    $array = $entry['1000'];
+        foreach ($array as $key => $record) {
+            $row = array(
+                'record_title' => $record['1002'],
+                'record_category' => $record['1001'] ,
+                'record_year' => $record['1003'],
+            );
+             add_row('faculty_record', $row, $post_id);
+        }
 }
 
 
@@ -263,27 +267,27 @@ function update_record($entry, $form){
 
 //SORT ACF YEAR FIELD TO NEWEST ON TOP
 function sort_record_by_year( $value, $post_id, $field ) {
-	// vars
-	$order = array();
-	
-	// bail early if no value
-	if( empty($value) ) {
-		return $value;		
-	}
-	
-	// populate order
-	foreach( $value as $i => $row ) {
-		
-		$order[ $i ] = $row['field_5cf50f064b39c'];
-		
-	}
-	
-	// multisort
-	array_multisort( $order, SORT_DESC, $value );
-	
-	// return	
-	return $value;
-	
+    // vars
+    $order = array();
+    
+    // bail early if no value
+    if( empty($value) ) {
+        return $value;      
+    }
+    
+    // populate order
+    foreach( $value as $i => $row ) {
+        
+        $order[ $i ] = $row['field_5cf50f064b39c'];
+        
+    }
+    
+    // multisort
+    array_multisort( $order, SORT_DESC, $value );
+    
+    // return   
+    return $value;
+    
 }
 
 add_filter('acf/load_value/name=faculty_record', 'sort_record_by_year', 10, 3);
@@ -339,7 +343,7 @@ function user_is_member(){
         //var_dump($user_ids);
         if (in_array($user_id, $user_ids)) {
             data_post_finder($title, $user_id);
-            if($post->post_name != $title && !is_super_admin() && !is_admin()){ //stop redirect is superadmin
+            if($post->post_name != $title && !is_super_admin() && !is_admin() && get_current_user_id() != 630){ //stop redirect is superadmin
                 wp_redirect($url . '/' . $title); 
                 exit;
             }
