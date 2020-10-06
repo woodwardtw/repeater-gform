@@ -2,7 +2,7 @@
 /*
 Plugin Name: repeater gform - deals with accreditation tracking
 Plugin URI:  https://github.com/
-Description: For repeater fields and other pieces that merge with gravity
+Description: For repeater fields and other pieces that merge with gravity - kstad
 Version:     1.0
 Author:      Tom Woodward
 Author URI:  http://bionicteaching.com
@@ -166,6 +166,7 @@ function all_tenure_records(){
         );
         $the_query = new WP_Query ( $args );
         echo '<h2>' . $the_query->found_posts . '</h2>';
+        echo '<button class="btn btn-primary" id="download">Download Data</button>';
         if ( $the_query->have_posts() ) :
             echo '<table id="all-data"><tr><th>Name</th><th>Category</th><th>Detail</th><th>Year</th><th>Edit</th><th>Recorded</th></tr>';
             while ( $the_query->have_posts() ) : $the_query->the_post();
