@@ -117,3 +117,9 @@ button.info:hover {
   width: 140px;
   background-color: #fff;
 }
+
+/*conditional show for presentations*/
+
+.hide {
+  display: none;
+}

@@ -26,7 +26,7 @@
             "label": "Category Key",
             "name": "category_key",
             "type": "wysiwyg",
-            "instructions": "The information entered here will appear when someone clicks on they ? icon.",
+            "instructions": "The information entered here will appear when someone clicks on the ? icon.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -56,7 +56,7 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1561898328
+    "modified": 1614441253
 }

@@ -67,7 +67,49 @@ function add_my_field( $form ) {
         'label'  => 'Year',
         'pageNumber'  => 1, // Ensure this is correct        
     ) );
- 
+//*************************** START conditional additions
+    $presentation_title = GF_Fields::create( array(
+        'type'   => 'text',
+        'id'     => 1004, // The Field ID must be unique on the form
+        'formId' => $form['id'],
+        'label'  => 'Title of Presentation',
+        'pageNumber'  => 1, // Ensure this is correct        
+    ) );
+
+    $presentation_host = GF_Fields::create( array(
+        'type'   => 'text',
+        'id'     => 1005, // The Field ID must be unique on the form
+        'formId' => $form['id'],
+        'label'  => 'Presentation Host',
+        'pageNumber'  => 1, // Ensure this is correct        
+    ) );
+
+    $presentation_location = GF_Fields::create( array(
+        'type'   => 'text',
+        'id'     => 1006, // The Field ID must be unique on the form
+        'formId' => $form['id'],
+        'label'  => 'Location of Presentation',
+        'pageNumber'  => 1, // Ensure this is correct        
+    ) );
+
+    //visitor hosting
+    $hosting_source = GF_Fields::create( array(
+        'type'   => 'text',
+        'id'     => 1007, // The Field ID must be unique on the form
+        'formId' => $form['id'],
+        'label'  => 'Visitor University or Organization name',
+        'pageNumber'  => 1, // Ensure this is correct        
+    ) );
+
+     $hosting_activity = GF_Fields::create( array(
+        'type'   => 'text',
+        'id'     => 1008, // The Field ID must be unique on the form
+        'formId' => $form['id'],
+        'label'  => 'Activity performed e.g. lecture, assessment, research interview',
+        'pageNumber'  => 1, // Ensure this is correct        
+    ) );
+ //*************************** END conditional additions
+
     // Create a repeater for the team members and add the name and email fields as the fields to display inside the repeater.
     $evidence = GF_Fields::create( array(
         'type'             => 'repeater',
@@ -79,7 +121,7 @@ function add_my_field( $form ) {
         'removeButtonText' => 'Remove item', // Optional
         //'maxItems'         => 3, // Optional
         'pageNumber'       => 1, // Ensure this is correct
-        'fields'           => array(  $description, $title, $year ), // Add the fields here.
+        'fields'           => array(  $description, $title, $year, $presentation_title, $presentation_host, $presentation_location, $hosting_source, $hosting_activity ), // Add the fields here. ***DON'T FORGET!!!!
     ) );
  
     $form['fields'][] = $evidence;
@@ -241,7 +283,7 @@ function update_recorded_status(){
 
 
 /*
-FORM TO ACF 
+FORM TO ACF UPDATE ACTUAL DATA
 */
 
 add_action( 'gform_after_submission_1', 'update_record', 10, 2 );
@@ -250,11 +292,44 @@ function update_record($entry, $form){
     global $post;
     $post_id = $post->ID;
     $array = $entry['1000'];
+    if(isset($record['1004'])){
+        $presentation_title = $record['1004'];
+    } else {
+        $presentation_title = '';
+    }
+    if(isset($record['1005'])){
+        $presentation_host = $record['1005'];
+    } else {
+        $presentation_host = '';
+    }
+    if(isset($record['1006'])){
+        $presentation_location = $record['1006'];
+    } else {
+        $presentation_location = '';
+    }
+    if(isset($record['1007'])){
+        $visitor_org = $record['1007'];
+    } else {
+        $visitor_org = '';
+    }
+    if(isset($record['1008'])){
+        $visitor_activity = $record['1008'];
+    } else {
+        $visitor_activity = '';
+    }
         foreach ($array as $key => $record) {
             $row = array(
                 'record_title' => $record['1002'],
                 'record_category' => $record['1001'] ,
                 'record_year' => $record['1003'],
+                //presentation specific
+                'presentation_title' => $presentation_title,
+                'presentation_host' => $presentation_host,
+                'presentation_location' => $presentation_location,
+               //hosted visitor specific
+                'hosted_visitor_org' => $visitor_org,
+                'hosted_visitor_activity' => $visitor_activity,
+
             );
              add_row('faculty_record', $row, $post_id);
         }
