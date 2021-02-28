@@ -46,7 +46,6 @@ function add_my_field( $form ) {
         'id'     => 1001, // The Field ID must be unique on the form
         'formId' => $form['id'],
         'label'  => 'Activity Category',
-        'cssClass' => 'fish',
         'pageNumber'  => 1, // Ensure this is correct        
     ) );
  
