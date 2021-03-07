@@ -19,7 +19,7 @@ add_action('wp_enqueue_scripts', 'prefix_load_scripts');
 function prefix_load_scripts() {                           
     global $post;
     $deps = array('jquery');
-    $version= '1.0'; 
+    $version= '2.0'; 
     $in_footer = true;
     wp_enqueue_script('list-js', 'https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js', $deps, $version, $in_footer);  
     wp_enqueue_script('jqueryUI', 'https://code.jquery.com/ui/1.12.1/jquery-ui.js', $deps, $version, $in_footer);     
@@ -235,7 +235,27 @@ function all_make_tenure_records($post_id, $author){
                 $record_category = get_sub_field('record_category');
                 $record_year = get_sub_field('record_year');
                 $record_recorded = get_sub_field('recorded');
-                $html .= '<tr><td>' . $author . '</td><td>' . $record_category . '</td><td>' . $record_title . '</td><td>' . $record_year . '</td><td>' . data_edit_post($post_id) . '</td><td><input class="recorded" type="checkbox" data-post_id="'.$post_id.'" data-row="' . get_row_index() . '" data-checked="' . $record_recorded . '" name="recorded-'. get_row_index().'" ' . recorded_checkbox($record_recorded) . '></td></tr>'; 
+                //presentation details
+                if(get_sub_field('presentation_title')){
+                    $presentation_title = get_sub_field('presentation_title');
+                    $presentation_host = get_sub_field('presentation_host');
+                    $presentation_location = get_sub_field('presentation_location');
+                    $presentation_details = ' - ' . $presentation_title . ' - ' . $presentation_location . ' - ' . $presentation_host;
+                } else {
+                    $presentation_details = '';
+                }
+              
+                //visitor hosting
+                if(get_sub_field('hosted_visitor_org')){
+                    $visitor_host = get_sub_field('hosted_visitor_org');
+                    $visitor_source = get_sub_field('hosted_visitor_activity');
+                    $visitor_details = ' - ' . $visitor_host . ' - ' . $visitor_source;
+                } else {
+                    $visitor_details = '';
+                }
+                
+
+                $html .= '<tr><td>' . $author . '</td><td>' . $record_category . '</td><td>' . $record_title . $presentation_details . $visitor_details . '</td><td>' . $record_year . '</td><td>' . data_edit_post($post_id) . '</td><td><input class="recorded" type="checkbox" data-post_id="'.$post_id.'" data-row="' . get_row_index() . '" data-checked="' . $record_recorded . '" name="recorded-'. get_row_index().'" ' . recorded_checkbox($record_recorded) . '></td></tr>'; 
         endwhile;
 
         else :
