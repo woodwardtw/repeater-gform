@@ -66,7 +66,22 @@ function add_my_field( $form ) {
         'label'  => 'Year',
         'pageNumber'  => 1, // Ensure this is correct        
     ) );
-//*************************** START conditional additions
+
+    //create a checkbox for impact
+    $impact_choice = [array(
+                'text'  => 'Yes',
+                'value' => 'impact'
+            )];
+    $impact = GF_Fields::create( array(
+        'type'   => 'checkbox',
+        'id'     => 1009, // The Field ID must be unique on the form
+        'formId' => $form['id'],
+        'label'  => 'Societal Impact',
+        'pageNumber'  => 1, // Ensure this is correct     
+        'choices' => $impact_choice,
+    ) );
+
+//*************************** START conditional additions for presentation
     $presentation_title = GF_Fields::create( array(
         'type'   => 'text',
         'id'     => 1004, // The Field ID must be unique on the form
@@ -105,9 +120,115 @@ function add_my_field( $form ) {
         'id'     => 1008, // The Field ID must be unique on the form
         'formId' => $form['id'],
         'label'  => 'Activity performed e.g. lecture, assessment, research interview',
-        'pageNumber'  => 1, // Ensure this is correct        
+        'pageNumber'  => 1, // Ensure this is correct   
+
     ) );
  //*************************** END conditional additions
+
+ //*************************** START conditional additions for Impact
+ //create a checkbox for impact
+
+         // $impact_choice = [array(
+         //        'text'  => 'Yes',
+         //        'value' => 'impact'
+         //    )];
+    $impact_selection = [
+        array(
+                "text" => "Basis for decisions and policies with implications on people",
+                "value" => "Basis for decisions and policies with implications on people",
+            ),
+             array(
+                "text" => "Basis for decisions and policies with implications on planet",
+                "value" => "Basis for decisions and policies with implications on planet",
+             
+            ),
+            array(
+                "text" => "Basis for decisions and policies with implications on profit",
+                "value" => "Basis for decisions and policies with implications on profit",
+             
+            ),
+            array(
+                "text" => "Dissemination in academic channels",
+                "value" => "Dissemination in academic channels",
+             
+            ),
+            array(
+                "text" => "Dissemination in public channels",
+                "value" => "Dissemination in public channels",
+             
+            ),
+             array(
+                "text" => "Forms of co-production",
+                "value" => "Forms of co-production",
+             
+            ),
+             array(
+                "text" => "Global scope in research",
+                "value" => "Global scope in research",
+             
+            ),
+             array(
+                "text" => "National scope in research",
+                "value" => "National scope in research",
+             
+            ),
+             array(
+                "text" => "Local scope in research",
+                "value" => "Local scope in research",
+             
+            ),
+             array(
+                "text" => "Innovation in research",
+                "value" => "Innovation in research",
+             
+            ),
+             array(
+                "text" => "Innovations in sustainable ways of working",
+                "value" => "Innovations in sustainable ways of working",
+             
+            ),
+             array(
+                "text" => "Interdisciplinary initiatives",
+                "value" => "Interdisciplinary initiatives",
+             
+            ),
+             array(
+                "text" => "Research awards",
+                "value" => "Research awards",
+             
+            ),
+             array(
+                "text" => "Use of ICs in education",
+                "value" => "Use of ICs in education",
+             
+            ),
+             array(
+                "text" => "Use of ICs in organizations",
+                "value" => "Use of ICs in organizations",
+             
+            ),
+             array(
+                "text" => "Use of ICs in research",
+                "value" => "Use of ICs in research",
+             
+            ),
+             array(
+                "text" => "Use of ICs in society",
+                "value" => "Use of ICs in society",
+             
+            )];
+    $impact_type = GF_Fields::create( array(
+        'type'   => 'checkbox',
+        'id'     => 1010, // The Field ID must be unique on the form
+        'formId' => $form['id'],
+        'label'  => '',
+        'pageNumber'  => 1, // Ensure this is correct     
+        'choices' => $impact_selection,
+    ) );
+
+//*************************** END conditional additions for Impact
+
+
 
     // Create a repeater for the team members and add the name and email fields as the fields to display inside the repeater.
     $evidence = GF_Fields::create( array(
@@ -120,7 +241,7 @@ function add_my_field( $form ) {
         'removeButtonText' => 'Remove item', // Optional
         //'maxItems'         => 3, // Optional
         'pageNumber'       => 1, // Ensure this is correct
-        'fields'           => array(  $description, $title, $year, $presentation_title, $presentation_host, $presentation_location, $hosting_source, $hosting_activity ), // Add the fields here. ***DON'T FORGET!!!!
+        'fields'           => array(  $description, $title, $year, $presentation_title, $presentation_host, $presentation_location, $hosting_source, $hosting_activity, $impact, $impact_type ), // Add the fields here. ***DON'T FORGET!!!!
     ) );
  
     $form['fields'][] = $evidence;

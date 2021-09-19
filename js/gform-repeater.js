@@ -46,8 +46,10 @@ const callback = function(mutationsList, observer) {
         if (mutation.type === 'childList') {
             //console.log('A child node has been added or removed.');
             dropDownMaker();
+            fixCheckboxId();
             hideFields();
             presoShow();
+            impactShow();
 
         }
     }
@@ -228,7 +230,6 @@ function presoShow(){
   var nodeCount = document.querySelectorAll('.gfield_repeater_item').length-1;
   let topic = document.querySelector('#input_1_1001-'+nodeCount);
   topic.addEventListener('focusout', (event) => {
-    console.log(topic.value);
     if(topic.value === 'Academic meeting presentation' || topic.value === 'Invited Presentations'){
       fieldIds = ['#input_1_1004-'+nodeCount, '#input_1_1005-'+nodeCount, '#input_1_1006-'+nodeCount];
       fieldIds.forEach(function(id) {
@@ -239,7 +240,6 @@ function presoShow(){
     }
     if(topic.value === 'Hosted international academics or industrial participants for research of teaching'){
       fieldIds = ['#input_1_1007-'+nodeCount, '#input_1_1008-'+nodeCount];
-      console.log(fieldIds);
       fieldIds.forEach(function(id) {
         let fieldTitle = document.querySelector(id);
         fieldTitle.parentNode.parentNode.classList.remove('hide');
@@ -249,10 +249,32 @@ function presoShow(){
   });
 }
 
+function impactShow(){
+  let nodeCount = document.querySelectorAll('.gfield_repeater_item').length;
+  let checkboxes = document.querySelectorAll('.gfield_checkbox');//needs to only get first checkbox item!!!!!
+  let cleanCheck = [];
+//get just the first checkbox by not getting li's >1
+  checkboxes.forEach(function(box,index){
+    if(box.getElementsByTagName("li").length <=1){      
+      cleanCheck.push(box)
+    }
+  })
+   cleanCheck.forEach(function(box,index){
+      box.addEventListener('change', (event) => {
+        //input_1_1010-0
+        let options = document.getElementById('input_1_1010-'+index)
+        console.log(options)
+        options.classList.toggle('hide')
+      })
+
+    })
+}
+
 function hideFields(){
   let nodeCount = document.querySelectorAll('.gfield_repeater_item').length-1;
-  console.log(nodeCount)
-  fieldIds = ['#input_1_1004-'+nodeCount, '#input_1_1005-'+nodeCount, '#input_1_1006-'+nodeCount, '#input_1_1007-'+nodeCount, '#input_1_1008-'+nodeCount];
+  fixCheckboxId();
+  fieldIds = ['#input_1_1004-'+nodeCount, '#input_1_1005-'+nodeCount, '#input_1_1006-'+nodeCount, '#input_1_1007-'+nodeCount, 
+  '#input_1_1008-'+nodeCount];
   fieldIds.forEach(function(id) {
     let fieldTitle = document.querySelector(id);
     fieldTitle.parentNode.parentNode.classList.add('hide');
@@ -260,6 +282,26 @@ function hideFields(){
   })
 }
 
+function fixCheckboxId(){
+  let nodeCount = document.querySelectorAll('.gfield_repeater_item').length;
+  let checkboxes = document.querySelectorAll('.gfield_checkbox');//needs to only get second checkbox item!!!!!
+  let specialBoxes = [];
+  // console.log('cb length = ' +checkboxes.length)
+  checkboxes.forEach(function(box,index){
+    if(box.getElementsByTagName("li").length>1){      
+      box.classList.add('hide');
+      specialBoxes.push(box)
+      //box.id = 'input_1_1010-'+((checkboxes.length/nodeCount));
+    }
+    specialBoxes.forEach(function(box, index){
+      box.id = 'input_1_1010-'+index;
+    })
+    //box.parentNode.parentNode.classList.add('hide');
+  })
+}
+
+fixCheckboxId();
 hideFields();
 
 presoShow();
+impactShow();
