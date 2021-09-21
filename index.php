@@ -43,7 +43,7 @@ function add_my_field( $form ) {
      // Create a category for the evidence
     $description = GF_Fields::create( array(
         'type'   => 'text',
-        'id'     => 1001, // The Field ID must be unique on the form
+        'id'     => '1001', // The Field ID must be unique on the form
         'formId' => $form['id'],
         'label'  => 'Activity Category',
         'pageNumber'  => 1, // Ensure this is correct        
@@ -52,7 +52,7 @@ function add_my_field( $form ) {
     // Create a Single Line text field for the title
     $title = GF_Fields::create( array(
         'type'   => 'text',
-        'id'     => 1002, // The Field ID must be unique on the form
+        'id'     => '1002', // The Field ID must be unique on the form
         'formId' => $form['id'],
         'label'  => 'Activity Details',
         'pageNumber'  => 1, // Ensure this is correct
@@ -61,30 +61,16 @@ function add_my_field( $form ) {
 
     $year = GF_Fields::create( array(
         'type'   => 'number',
-        'id'     => 1003, // The Field ID must be unique on the form
+        'id'     => '1003', // The Field ID must be unique on the form
         'formId' => $form['id'],
         'label'  => 'Year',
         'pageNumber'  => 1, // Ensure this is correct        
     ) );
 
-    //create a checkbox for impact
-    $impact_choice = [array(
-                'text'  => 'Yes',
-                'value' => 'impact'
-            )];
-    $impact = GF_Fields::create( array(
-        'type'   => 'checkbox',
-        'id'     => 1009, // The Field ID must be unique on the form
-        'formId' => $form['id'],
-        'label'  => 'Societal Impact',
-        'pageNumber'  => 1, // Ensure this is correct     
-        'choices' => $impact_choice,
-    ) );
-
 //*************************** START conditional additions for presentation
     $presentation_title = GF_Fields::create( array(
         'type'   => 'text',
-        'id'     => 1004, // The Field ID must be unique on the form
+        'id'     => '1004', // The Field ID must be unique on the form
         'formId' => $form['id'],
         'label'  => 'Title of Presentation',
         'pageNumber'  => 1, // Ensure this is correct        
@@ -92,7 +78,7 @@ function add_my_field( $form ) {
 
     $presentation_host = GF_Fields::create( array(
         'type'   => 'text',
-        'id'     => 1005, // The Field ID must be unique on the form
+        'id'     => '1005', // The Field ID must be unique on the form
         'formId' => $form['id'],
         'label'  => 'Presentation Host',
         'pageNumber'  => 1, // Ensure this is correct        
@@ -100,7 +86,7 @@ function add_my_field( $form ) {
 
     $presentation_location = GF_Fields::create( array(
         'type'   => 'text',
-        'id'     => 1006, // The Field ID must be unique on the form
+        'id'     => '1006', // The Field ID must be unique on the form
         'formId' => $form['id'],
         'label'  => 'Location of Presentation',
         'pageNumber'  => 1, // Ensure this is correct        
@@ -109,7 +95,7 @@ function add_my_field( $form ) {
     //visitor hosting
     $hosting_source = GF_Fields::create( array(
         'type'   => 'text',
-        'id'     => 1007, // The Field ID must be unique on the form
+        'id'     => '1007', // The Field ID must be unique on the form
         'formId' => $form['id'],
         'label'  => 'Visitor University or Organization name',
         'pageNumber'  => 1, // Ensure this is correct        
@@ -117,7 +103,7 @@ function add_my_field( $form ) {
 
      $hosting_activity = GF_Fields::create( array(
         'type'   => 'text',
-        'id'     => 1008, // The Field ID must be unique on the form
+        'id'     => '1008', // The Field ID must be unique on the form
         'formId' => $form['id'],
         'label'  => 'Activity performed e.g. lecture, assessment, research interview',
         'pageNumber'  => 1, // Ensure this is correct   
@@ -126,104 +112,211 @@ function add_my_field( $form ) {
  //*************************** END conditional additions
 
  //*************************** START conditional additions for Impact
- //create a checkbox for impact
-
-         // $impact_choice = [array(
-         //        'text'  => 'Yes',
-         //        'value' => 'impact'
-         //    )];
-    $impact_selection = [
+  //create a checkbox for impact
+   
+    $impact = GF_Fields::create( array(
+        'type'   => 'checkbox',
+        'id'     => '1009', // The Field ID must be unique on the form
+        'formId' => $form['id'],
+        'label'  => 'Societal Impact',
+        'pageNumber'  => 1, // Ensure this is correct     
+        'choices' => [ array(
+            'text' => 'Yes',
+            'value' => 'yes',
+            'isSelected' => false,
+            'price' => ''
+            )
+        ],
+        'inputs' => [
+            array(
+                'id' => '1009.1',
+                'label' => 'Yes',
+                'name' => ''
+            )
+        ],
+    ) );
+   
+    $impact_type = GF_Fields::create( array(
+        'type'   => 'checkbox',
+        'id'     => '1010', // The Field ID must be unique on the form
+        'formId' => $form['id'],
+        'label'  => 'Impact Type',
+        'pageNumber'  => 1, // Ensure this is correct     
+        'choices' => [
         array(
                 "text" => "Basis for decisions and policies with implications on people",
                 "value" => "Basis for decisions and policies with implications on people",
+                'isSelected' => false,
             ),
              array(
                 "text" => "Basis for decisions and policies with implications on planet",
                 "value" => "Basis for decisions and policies with implications on planet",
-             
+                'isSelected' => false,
             ),
             array(
                 "text" => "Basis for decisions and policies with implications on profit",
                 "value" => "Basis for decisions and policies with implications on profit",
-             
+                'isSelected' => false,
             ),
             array(
                 "text" => "Dissemination in academic channels",
                 "value" => "Dissemination in academic channels",
-             
+                'isSelected' => false,
             ),
             array(
                 "text" => "Dissemination in public channels",
                 "value" => "Dissemination in public channels",
-             
+                'isSelected' => false,
             ),
              array(
                 "text" => "Forms of co-production",
                 "value" => "Forms of co-production",
-             
+                'isSelected' => false,
             ),
              array(
                 "text" => "Global scope in research",
                 "value" => "Global scope in research",
-             
+                'isSelected' => false,
             ),
              array(
                 "text" => "National scope in research",
                 "value" => "National scope in research",
-             
+                'isSelected' => false,
             ),
              array(
                 "text" => "Local scope in research",
                 "value" => "Local scope in research",
-             
+                'isSelected' => false,
             ),
              array(
                 "text" => "Innovation in research",
                 "value" => "Innovation in research",
-             
+                'isSelected' => false,
             ),
              array(
                 "text" => "Innovations in sustainable ways of working",
                 "value" => "Innovations in sustainable ways of working",
-             
+                'isSelected' => false,
             ),
              array(
                 "text" => "Interdisciplinary initiatives",
                 "value" => "Interdisciplinary initiatives",
-             
+                'isSelected' => false,
             ),
              array(
                 "text" => "Research awards",
                 "value" => "Research awards",
-             
+                'isSelected' => false,
             ),
              array(
                 "text" => "Use of ICs in education",
                 "value" => "Use of ICs in education",
-             
+                'isSelected' => false,
             ),
              array(
                 "text" => "Use of ICs in organizations",
                 "value" => "Use of ICs in organizations",
-             
+                'isSelected' => false,
             ),
              array(
                 "text" => "Use of ICs in research",
                 "value" => "Use of ICs in research",
-             
+                'isSelected' => false,
             ),
              array(
                 "text" => "Use of ICs in society",
                 "value" => "Use of ICs in society",
-             
-            )];
-    $impact_type = GF_Fields::create( array(
-        'type'   => 'checkbox',
-        'id'     => 1010, // The Field ID must be unique on the form
-        'formId' => $form['id'],
-        'label'  => '',
-        'pageNumber'  => 1, // Ensure this is correct     
-        'choices' => $impact_selection,
+                'isSelected' => false,
+            ),
+         ],
+        'inputs' => [
+        array(
+                "id" => "1010.1",
+                "value" => "Basis for decisions and policies with implications on people",
+                "name" => '',
+            ),
+            array(
+                "id" => "1010.2",
+                "value" => "Basis for decisions and policies with implications on planet",
+                'name' => '',
+            ),
+            array(
+                "id" => "1010.3",
+                "value" => "Basis for decisions and policies with implications on profit",
+                'name' => '',
+            ),
+            array(
+                "id" => "1010.4",
+                "value" => "Dissemination in academic channels",
+                'name' => '',
+            ),
+            array(
+                "id" => "1010.5",
+                "value" => "Dissemination in public channels",
+                'name' => '',
+            ),
+             array(
+                "id" => "1010.6",
+                "value" => "Forms of co-production",
+                'name' => '',
+            ),
+             array(
+                "id" => "1010.7",
+                "value" => "Global scope in research",
+                'name' => '',
+            ),
+             array(
+                "id" => "1010.8",
+                "value" => "National scope in research",
+                'name' => '',
+            ),
+             array(
+                "id" => "1010.9",
+                "value" => "Local scope in research",
+                'name' => '',
+            ),
+             array(
+                "id" => "1010.10",
+                "value" => "Innovation in research",
+                'name' => '',
+            ),
+             array(
+                "id" => "1010.11",
+                "value" => "Innovations in sustainable ways of working",
+                'name' => '',
+            ),
+             array(
+                "id" => "1010.12",
+                "value" => "Interdisciplinary initiatives",
+                'name' => '',
+            ),
+             array(
+                "id" => "1010.13",
+                "value" => "Research awards",
+                'name' => '',
+            ),
+             array(
+                "id" => "1010.14",
+                "value" => "Use of ICs in education",
+                'name' => '',
+            ),
+             array(
+                "id" => "1010.15",
+                "value" => "Use of ICs in organizations",
+                'name' => '',
+            ),
+             array(
+                "id" => "1010.16",
+                "value" => "Use of ICs in research",
+                'name' => '',
+            ),
+             array(
+                "id" => "1010.17",
+                "value" => "Use of ICs in society",
+                'name' => '',             
+            ),
+
+    ],
     ) );
 
 //*************************** END conditional additions for Impact
@@ -241,11 +334,11 @@ function add_my_field( $form ) {
         'removeButtonText' => 'Remove item', // Optional
         //'maxItems'         => 3, // Optional
         'pageNumber'       => 1, // Ensure this is correct
-        'fields'           => array(  $description, $title, $year, $presentation_title, $presentation_host, $presentation_location, $hosting_source, $hosting_activity, $impact, $impact_type ), // Add the fields here. ***DON'T FORGET!!!!
+        'fields'           => array( $description, $title, $year, $presentation_title, $presentation_host, $presentation_location, $hosting_source, $hosting_activity, $impact, $impact_type ), // Add the fields here. ***DON'T FORGET!!!!
     ) );
  
-    $form['fields'][] = $evidence;
- 
+    //$form['fields'][] = $evidence;
+    array_splice( $form['fields'], 2, 0, array( $evidence ) );
     return $form;
 }
  
@@ -256,7 +349,7 @@ function remove_my_field( $form_meta, $form_id, $meta_name ) {
  
     if ( $meta_name == 'display_meta' ) {
         // Remove the Repeater field: ID 1000
-        $form_meta['fields'] = wp_list_filter( $form_meta['fields'], array( 'id' => 1000 ), 'NOT' );
+        $form_meta['fields'] = wp_list_filter( $form_meta['fields'], array( 'id' => 1 ), 'NOT' );
     }
  
     return $form_meta;
@@ -281,6 +374,7 @@ function build_tenure_table(){
                 $record_title = get_sub_field('record_title');
                 $record_category = get_sub_field('record_category');
                 $record_year = get_sub_field('record_year');
+                $impact = get_sub_field('societal_impact');
                 $html .= specific_tenure_records($record_title, $record_category, $record_year, get_row_index());
             endwhile;
 
@@ -432,6 +526,7 @@ function update_record($entry, $form){
     global $post;
     $post_id = $post->ID;
     $array = $entry['1000'];
+    var_dump($entry);
     if(isset($record['1004'])){
         $presentation_title = $record['1004'];
     } else {
@@ -457,6 +552,13 @@ function update_record($entry, $form){
     } else {
         $visitor_activity = '';
     }
+    if(isset($record['1009'])){
+        $impact = $record['1009_1'];
+    } else {
+        $impact = '';
+    }
+
+
         foreach ($array as $key => $record) {
             $row = array(
                 'record_title' => $record['1002'],
@@ -469,6 +571,8 @@ function update_record($entry, $form){
                //hosted visitor specific
                 'hosted_visitor_org' => $visitor_org,
                 'hosted_visitor_activity' => $visitor_activity,
+               //impact specific 
+                'societal_impact' => $impact,
 
             );
              add_row('faculty_record', $row, $post_id);

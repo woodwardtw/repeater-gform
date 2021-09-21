@@ -198,6 +198,64 @@
                     "prepend": "",
                     "append": "",
                     "maxlength": ""
+                },
+                {
+                    "key": "field_6148ef74e5b26",
+                    "label": "Societal Impact",
+                    "name": "societal_impact",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_6148ef80e5b27",
+                    "label": "Impact type",
+                    "name": "impact_type",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "Basis for decisions and policies with implications on people": "Basis for decisions and policies with implications on people",
+                        "Basis for decisions and policies with implications on planet": "Basis for decisions and policies with implications on planet",
+                        "Basis for decisions and policies with implications on profit": "Basis for decisions and policies with implications on profit",
+                        "Dissemination in academic channels": "Dissemination in academic channels",
+                        "Dissemination in public channels": "Dissemination in public channels",
+                        "Forms of co-production": "Forms of co-production",
+                        "Global scope in research": "Global scope in research",
+                        "National scope in research": "National scope in research",
+                        "Local scope in research": "Local scope in research",
+                        "Innovation in research": "Innovation in research",
+                        "Innovations in sustainable ways of working": "Innovations in sustainable ways of working",
+                        "Interdisciplinary initiatives": "Interdisciplinary initiatives",
+                        "Research awards": "Research awards",
+                        "Use of ICs in education": "Use of ICs in education",
+                        "Use of ICs in organizations": "Use of ICs in organizations",
+                        "Use of ICs in research": "Use of ICs in research",
+                        "Use of ICs in society": "Use of ICs in society"
+                    },
+                    "allow_custom": 0,
+                    "default_value": [],
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value",
+                    "save_custom": 0
                 }
             ]
         }
@@ -224,5 +282,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1614441157
+    "modified": 1632169903
 }

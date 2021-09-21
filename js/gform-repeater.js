@@ -263,8 +263,12 @@ function impactShow(){
       box.addEventListener('change', (event) => {
         //input_1_1010-0
         let options = document.getElementById('input_1_1010-'+index)
-        console.log(options)
-        options.classList.toggle('hide')
+        console.log(box)
+        if(options.classList.contains('hide')){
+          options.classList.remove('hide');
+        } else {
+          options.classList.add('hide');
+        }
       })
 
     })
