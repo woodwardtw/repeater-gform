@@ -121,5 +121,38 @@ button.info:hover {
 /*conditional show for presentations*/
 
 .hide {
-  display: none;
+  height: 0;
+  overflow:  hidden;
+}
+
+.society-box {
+  width: 300px;
+  background-color: #efefef;
+  border-radius: 30px;
+  display: block;
+  margin:  0 auto;
+  text-align: center;
+  overflow: auto;
+}
+
+.society-box .gfield_label {
+  text-align: left;
+  display: inline-block;
+  float: left;
+  margin-left: 20px;
+}
+
+.society-box .ginput_container_checkbox {
+  display: inline-block;
+  float: left;
+}
+
+#gform_1 .society-box .ginput_container_checkbox {
+  margin-top: -3px;
+}
+
+
+.society-options {
+  margin:  0 auto;
+  width:  100%;
 }

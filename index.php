@@ -3,7 +3,7 @@
 Plugin Name: repeater gform - deals with accreditation tracking
 Plugin URI:  https://github.com/
 Description: For repeater fields and other pieces that merge with gravity - kstad
-Version:     1.0
+Version:     2.0
 Author:      Tom Woodward
 Author URI:  http://bionicteaching.com
 License:     GPL2
@@ -118,7 +118,7 @@ function add_my_field( $form ) {
         'type'   => 'checkbox',
         'id'     => '1009', // The Field ID must be unique on the form
         'formId' => $form['id'],
-        'label'  => 'Societal Impact',
+        'label'  => 'Societal Impact?',
         'pageNumber'  => 1, // Ensure this is correct     
         'choices' => [ array(
             'text' => 'Yes',
@@ -140,7 +140,7 @@ function add_my_field( $form ) {
         'type'   => 'checkbox',
         'id'     => '1010', // The Field ID must be unique on the form
         'formId' => $form['id'],
-        'label'  => 'Impact Type',
+        'label'  => '',
         'pageNumber'  => 1, // Ensure this is correct     
         'choices' => [
         array(
@@ -276,42 +276,42 @@ function add_my_field( $form ) {
                 'name' => '',
             ),
              array(
-                "id" => "1010.10",
+                "id" => "1010.11",
                 "value" => "Innovation in research",
                 'name' => '',
             ),
              array(
-                "id" => "1010.11",
+                "id" => "1010.12",
                 "value" => "Innovations in sustainable ways of working",
                 'name' => '',
             ),
              array(
-                "id" => "1010.12",
+                "id" => "1010.13",
                 "value" => "Interdisciplinary initiatives",
                 'name' => '',
             ),
              array(
-                "id" => "1010.13",
+                "id" => "1010.14",
                 "value" => "Research awards",
                 'name' => '',
             ),
              array(
-                "id" => "1010.14",
+                "id" => "1010.15",
                 "value" => "Use of ICs in education",
                 'name' => '',
             ),
              array(
-                "id" => "1010.15",
+                "id" => "1010.16",
                 "value" => "Use of ICs in organizations",
                 'name' => '',
             ),
              array(
-                "id" => "1010.16",
+                "id" => "1010.17",
                 "value" => "Use of ICs in research",
                 'name' => '',
             ),
              array(
-                "id" => "1010.17",
+                "id" => "1010.18",
                 "value" => "Use of ICs in society",
                 'name' => '',             
             ),
@@ -412,7 +412,8 @@ function specific_tenure_records($title, $category, $year, $row_index){
 function all_tenure_records(){
     //add query here
      if(!is_user_logged_in()){
-        return '<a href="https://hhk3test.hotell.kau.se/gather-data/wp-admin/">Please Login</a>';
+        $current_url = home_url( add_query_arg( [], $GLOBALS['wp']->request ) );
+        return '<a href="'.wp_login_url($current_url).'">Please Login</a>';
     } else {
         $args = array(
             'post_type'    => 'page',
@@ -525,56 +526,29 @@ add_action( 'gform_after_submission_1', 'update_record', 10, 2 );
 function update_record($entry, $form){
     global $post;
     $post_id = $post->ID;
-    $array = $entry['1000'];
-    var_dump($entry);
-    if(isset($record['1004'])){
-        $presentation_title = $record['1004'];
-    } else {
-        $presentation_title = '';
-    }
-    if(isset($record['1005'])){
-        $presentation_host = $record['1005'];
-    } else {
-        $presentation_host = '';
-    }
-    if(isset($record['1006'])){
-        $presentation_location = $record['1006'];
-    } else {
-        $presentation_location = '';
-    }
-    if(isset($record['1007'])){
-        $visitor_org = $record['1007'];
-    } else {
-        $visitor_org = '';
-    }
-    if(isset($record['1008'])){
-        $visitor_activity = $record['1008'];
-    } else {
-        $visitor_activity = '';
-    }
-    if(isset($record['1009'])){
-        $impact = $record['1009_1'];
-    } else {
-        $impact = '';
-    }
+    $record = $entry['1000'];
+    //var_dump($record);
 
 
-        foreach ($array as $key => $record) {
+        foreach ($record as $key => $entry) {
+            $all_impacts = array($entry['1010.1'],$entry['1010.2'],$entry['1010.3'],$entry['1010.4'],$entry['1010.5'],$entry['1010.6'],$entry['1010.7'],$entry['1010.8'],$entry['1010.9'],$entry['1010.11'],$entry['1010.12'],$entry['1010.13'],$entry['1010.14'],$entry['1010.15'],$entry['1010.16'],$entry['1010.17'], $entry['1010.18']);
             $row = array(
-                'record_title' => $record['1002'],
-                'record_category' => $record['1001'] ,
-                'record_year' => $record['1003'],
+                'record_title' => $entry['1002'],
+                'record_category' => $entry['1001'] ,
+                'record_year' => $entry['1003'],
                 //presentation specific
-                'presentation_title' => $presentation_title,
-                'presentation_host' => $presentation_host,
-                'presentation_location' => $presentation_location,
+                'presentation_title' => $entry['1004'],
+                'presentation_host' => $entry['1005'],
+                'presentation_location' => $entry['1006'],
                //hosted visitor specific
-                'hosted_visitor_org' => $visitor_org,
-                'hosted_visitor_activity' => $visitor_activity,
+                'hosted_visitor_org' => $entry['1007'],
+                'hosted_visitor_activity' => $entry['1008'],
                //impact specific 
-                'societal_impact' => $impact,
-
+                'societal_impact' => $entry['1009.1'],
+                'impact_type' => $all_impacts,
+                'impact_type_string' => implode(', ', array_filter($all_impacts)),
             );
+            //var_dump($row);
              add_row('faculty_record', $row, $post_id);
         }
 }

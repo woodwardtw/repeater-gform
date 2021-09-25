@@ -203,7 +203,7 @@
                     "key": "field_6148ef74e5b26",
                     "label": "Societal Impact",
                     "name": "societal_impact",
-                    "type": "text",
+                    "type": "checkbox",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -212,11 +212,15 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
+                    "choices": {
+                        "Yes": "Yes"
+                    },
+                    "allow_custom": 0,
+                    "default_value": [],
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value",
+                    "save_custom": 0
                 },
                 {
                     "key": "field_6148ef80e5b27",
@@ -227,7 +231,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "100",
                         "class": "",
                         "id": ""
                     },
@@ -252,10 +256,29 @@
                     },
                     "allow_custom": 0,
                     "default_value": [],
-                    "layout": "vertical",
+                    "layout": "horizontal",
                     "toggle": 0,
                     "return_format": "value",
                     "save_custom": 0
+                },
+                {
+                    "key": "field_614b11c441dc5",
+                    "label": "Impact Type String",
+                    "name": "impact_type_string",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
                 }
             ]
         }
@@ -282,5 +305,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1632169903
+    "modified": 1632309711
 }

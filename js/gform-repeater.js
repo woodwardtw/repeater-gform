@@ -260,10 +260,12 @@ function impactShow(){
     }
   })
    cleanCheck.forEach(function(box,index){
+      box.parentNode.parentNode.classList.add('society-box')
       box.addEventListener('change', (event) => {
         //input_1_1010-0
-        let options = document.getElementById('input_1_1010-'+index)
+        let options = document.getElementById('input_1_1010-'+index);
         console.log(box)
+        options.classList.add('society-options');
         if(options.classList.contains('hide')){
           options.classList.remove('hide');
         } else {
