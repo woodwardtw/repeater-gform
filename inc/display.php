@@ -112,7 +112,7 @@ function all_make_tenure_records($post_id, $author){
                 }
                 
 
-                $html .= '<tr><td>' . $author . '</td><td>' . $record_category . '</td><td>' . $record_title . $presentation_details . $visitor_details . '</td><td>' . $record_year . '</td><td>' . data_edit_post($post_id) . '</td><td><input class="recorded" type="checkbox" data-post_id="'.$post_id.'" data-row="' . get_row_index() . '" data-checked="' . $record_recorded . '" name="recorded-'. get_row_index().'" ' . recorded_checkbox($record_recorded) . '></td></tr>'; 
+                $html .= '<tr><td>' . swede_array_check($author) . '</td><td>' . swede_array_check($record_category) . '</td><td>' . $record_title . $presentation_details . $visitor_details . '</td><td>' . $record_year . '</td><td>' . data_edit_post($post_id) . '</td><td><input class="recorded" type="checkbox" data-post_id="'.$post_id.'" data-row="' . get_row_index() . '" data-checked="' . $record_recorded . '" name="recorded-'. get_row_index().'" ' . recorded_checkbox($record_recorded) . '></td></tr>'; 
         endwhile;
 
         else :
@@ -121,6 +121,15 @@ function all_make_tenure_records($post_id, $author){
 
     endif;
     return $html;
+}
+
+function swede_array_check($data) {
+    if (is_array($data) ){
+        return implode(', ', $data);
+    } else {
+        return $data;
+    }
+    
 }
 
 function data_edit_post($post_id){
