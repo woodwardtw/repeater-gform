@@ -184,3 +184,7 @@ button.info:hover {
 .gfield_repeater_cell:nth-of-type(10), .gfield_repeater_cell:nth-of-type(12) {
   width: 80%;
 }
+
+#gform_wrapper_1 {
+  display: none;
+}

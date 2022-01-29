@@ -35,39 +35,39 @@ add_filter('acf/load_value/name=faculty_record', 'sort_record_by_year', 10, 3);
 
 
 //add ACF FORM TO HEADER***************************
-add_action( 'wp_head', 'sweden_add_acf_head' );
+// add_action( 'wp_head', 'sweden_add_acf_head' );
 
-function sweden_add_acf_head() {
-    if (
-        ! function_exists( 'acf_form_head' )
+// function sweden_add_acf_head() {
+//     if (
+//         ! function_exists( 'acf_form_head' )
 
-    ) {
-        return;
-    }
+//     ) {
+//         return;
+//     }
 
-    acf_form_head();
-}
-add_filter('acf/settings/load_json', 'my_acf_json_load_point');
+//     acf_form_head();
+// }
+// add_filter('acf/settings/load_json', 'my_acf_json_load_point');
 
 
 
-add_filter( 'the_content', 'add_acf_form', 1 );
+// add_filter( 'the_content', 'add_acf_form', 1 );
  
-function add_acf_form( $content ) {
-    global $post;
-    // if (  ) {
-    //     return $content . acf_form();;
-    // }
-    $args = array(
-        'post_id' => $post->id,
-        'id' => 'activity-submission',
-        'new_post' => false,
-        'fields' => array('faculty_record'),
+// function add_acf_form( $content ) {
+//     global $post;
+//     // if (  ) {
+//     //     return $content . acf_form();;
+//     // }
+//     $args = array(
+//         'post_id' => $post->id,
+//         'id' => 'activity-submission',
+//         'new_post' => false,
+//         'fields' => array('faculty_record'),
 
-    );
+//     );
  
-    return $content . acf_form($args);
-}
+//     return $content . acf_form($args);
+// }
 
 
 //ACF JSON SAVER

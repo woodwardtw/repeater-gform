@@ -39,7 +39,7 @@ function specific_tenure_records($title, $category, $year, $row_index){
         $html .= '<div class="col-md-2">' . $year .'</div>';
         $html .= '<div class="col-md-5">' . $title .'</div><div class="col-md-4">' . $category .'</div>';
         $html .= '<div class="col-md-1">';
-        if( $author_id === $current_user || is_admin() || is_super_admin()){
+        if( $author_id === $current_user || current_user_can( 'manage_options' ) || is_super_admin()){
             $html .= '<button class="delete" id="delete-' . $row_index . '" data-row="' . $row_index . '" " data-id="' . $post_id . '" data-toggle="tooltip" title="Delete this row.">x</button>';
         }
         $html .= '</div></div>';

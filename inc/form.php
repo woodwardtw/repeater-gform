@@ -3,6 +3,18 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+
+add_filter( 'the_content', 'add_acf_form', 1 );
+ 
+function add_acf_form( $content ) {
+    $content = str_replace('<h2>Add Activities</h2>', '', $content);
+    $new_form = str_replace('gravityform id="1"', 'gravityform id="4"', $content);
+    
+    return $new_form;
+}
+
+
+//***********************************ORIGINAL
 //BUILD GRAVITY FORM
 
 // Adjust your form ID

@@ -41,7 +41,8 @@ function swede_data_load_scripts() {
     wp_enqueue_script('list-js', 'https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js', $deps, $version, $in_footer);  
     wp_enqueue_script('jqueryUI', 'https://code.jquery.com/ui/1.12.1/jquery-ui.js', $deps, $version, $in_footer);     
     wp_enqueue_script('gform-repeater-js', plugin_dir_url( __FILE__) . 'js/gform-repeater.js', $deps, $version, $in_footer); 
-    wp_localize_script('gform-repeater-js', 'ajaxurl', admin_url( 'admin-ajax.php' ) );  
+    wp_localize_script('gform-repeater-js', 'ajaxurl', array(admin_url( 'admin-ajax.php' )) );  
+
     wp_enqueue_style( 'gform-repeater-main-css', plugin_dir_url( __FILE__) . 'css/gform-repeater-main.css');
     wp_enqueue_style( 'jqueryUI-css', 'https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
     wp_localize_script('gform-repeater-js', 'ajax_var', array(
