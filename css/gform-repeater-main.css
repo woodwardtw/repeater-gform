@@ -126,7 +126,7 @@ button.info:hover {
 }
 
 .society-box {
-  width: 300px;
+  width: 100%;
   background-color: #efefef;
   border-radius: 30px;
   display: block;
@@ -135,11 +135,20 @@ button.info:hover {
   overflow: auto;
 }
 
+#input_1_1009-0 .gchoice_1_1009_1 {
+  float: right;
+  margin-top: 3px;
+}
+
 .society-box .gfield_label {
   text-align: left;
   display: inline-block;
   float: left;
   margin-left: 20px;
+}
+
+#choice_1_1009_1-0 {
+  margin-top: 0;
 }
 
 .society-box .ginput_container_checkbox {
@@ -151,8 +160,27 @@ button.info:hover {
   margin-top: -3px;
 }
 
-
 .society-options {
   margin:  0 auto;
   width:  100%;
+}
+
+#input_1_1010-0 li {
+  margin-bottom: 20px;
+  transition: all .3s ease;
+  width: 90%;
+}
+
+#input_1_1010-0 li:hover {
+  background-color: #bdf1ba;
+}
+
+#input_1_1010-0 label {
+  line-height: 1.2em;
+  padding-top: 5px;
+  width: 90%;
+}
+
+.gfield_repeater_cell:nth-of-type(10), .gfield_repeater_cell:nth-of-type(12) {
+  width: 80%;
 }

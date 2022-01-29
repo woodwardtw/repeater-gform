@@ -18,7 +18,7 @@
             "collapsed": "",
             "min": 0,
             "max": 0,
-            "layout": "table",
+            "layout": "block",
             "button_label": "",
             "sub_fields": [
                 {
@@ -203,7 +203,7 @@
                     "key": "field_6148ef74e5b26",
                     "label": "Societal Impact",
                     "name": "societal_impact",
-                    "type": "checkbox",
+                    "type": "radio",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -213,14 +213,15 @@
                         "id": ""
                     },
                     "choices": {
-                        "Yes": "Yes"
+                        "yes": "Yes",
+                        "no": "No"
                     },
-                    "allow_custom": 0,
-                    "default_value": [],
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
                     "layout": "vertical",
-                    "toggle": 0,
                     "return_format": "value",
-                    "save_custom": 0
+                    "save_other_choice": 0
                 },
                 {
                     "key": "field_6148ef80e5b27",
@@ -279,6 +280,125 @@
                     "prepend": "",
                     "append": "",
                     "maxlength": ""
+                },
+                {
+                    "key": "field_61dae11da59ae",
+                    "label": "External org contribution",
+                    "name": "external_org_contribution",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "yes": "Yes",
+                        "no": "No"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_61dae291b5c52",
+                    "label": "Course Code and Term",
+                    "name": "course_code_and_term",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_61dae137a59af",
+                    "label": "Term and Year",
+                    "name": "term_and_year",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_61dae140a59b0",
+                    "label": "Organization name",
+                    "name": "organization_name",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_61dae14ea59b1",
+                    "label": "Location of organization",
+                    "name": "location_of_organization",
+                    "type": "text",
+                    "instructions": "city, country",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_61dae15ea59b2",
+                    "label": "Type of collaboration",
+                    "name": "type_of_collaboration",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
                 }
             ]
         }
@@ -305,5 +425,6 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1632309711
+    "show_in_rest": 0,
+    "modified": 1641738570
 }
