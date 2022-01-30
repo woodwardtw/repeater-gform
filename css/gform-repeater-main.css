@@ -188,3 +188,7 @@ button.info:hover {
 #gform_wrapper_1 {
   display: none;
 }
+
+.highlight {
+  background-color:  red;
+}

@@ -13,8 +13,43 @@ function add_acf_form( $content ) {
     return $new_form;
 }
 
+add_action( 'gform_after_submission_4', 'swede_update_record', 10, 2 );//pay attention to form ID
 
-//***********************************ORIGINAL
+function swede_update_record($entry, $form){
+    global $post;
+    $post_id = $post->ID;
+    $record = $entry;
+    var_dump($record);
+           
+            $row = array(
+                'record_title' => $entry['8'],
+                'record_category' => $entry['1'] ,
+                'record_year' => $entry['10'],
+                //presentation specific
+                'presentation_title' => 'preso title',
+                'presentation_host' => 'pres host',
+                'presentation_location' => 'pres location',
+               //hosted visitor specific
+                'hosted_visitor_org' => 'hosted org',
+                'hosted_visitor_activity' => 'hosted activity',
+               //impact specific 
+                'societal_impact' => '',
+                'impact_type' => 'foo',
+                'impact_type_string' => 'mishmash string previously',
+                //exterma org collab
+                // 'external_org_contribution' => $entry['1011.1'],
+                // 'course_code_and_term' => $entry['1012'],
+                // 'term_and_year' => $entry['1013'],
+                // 'organization_name' => $entry['1014'],
+                // 'location_of_organization' => $entry['1015'],
+                // 'type_of_collaboration' => $entry['1016'],
+            );
+            //var_dump($row);
+             add_row('faculty_record', $row, $post_id);
+}
+
+
+//***********************************ORIGINAL---OLD---------
 //BUILD GRAVITY FORM
 
 // Adjust your form ID

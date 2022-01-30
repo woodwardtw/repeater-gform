@@ -298,15 +298,18 @@ function impactShow(){
 }
 
 function hideFields(){
-  let nodeCount = document.querySelectorAll('.gfield_repeater_item').length-1;
-  fixCheckboxId();
-  fieldIds = ['#input_1_1004-'+nodeCount, '#input_1_1005-'+nodeCount, '#input_1_1006-'+nodeCount, '#input_1_1007-'+nodeCount, 
-  '#input_1_1008-'+nodeCount];
-  fieldIds.forEach(function(id) {
-    let fieldTitle = document.querySelector(id);
-    fieldTitle.parentNode.parentNode.classList.add('hide');
-    fieldTitle.classList.add('hide');
-  })
+  if (document.querySelectorAll('.gfield_repeater_item') !== null){
+    let nodeCount = document.querySelectorAll('.gfield_repeater_item').length-1;
+    fixCheckboxId();
+    fieldIds = ['#input_1_1004-'+nodeCount, '#input_1_1005-'+nodeCount, '#input_1_1006-'+nodeCount, '#input_1_1007-'+nodeCount, 
+    '#input_1_1008-'+nodeCount];
+    fieldIds.forEach(function(id) {
+      let fieldTitle = document.querySelector(id);
+      fieldTitle.parentNode.parentNode.classList.add('hide');
+      fieldTitle.classList.add('hide');
+    })
+  }
+  
 }
 
 function fixCheckboxId(){
@@ -328,7 +331,19 @@ function fixCheckboxId(){
 }
 
 fixCheckboxId();
-hideFields();
 
-presoShow();
-impactShow();
+//IF NEW FORM THEN TRASH ALL THIS
+//hideFields();
+// presoShow();
+// impactShow();
+swede_highlight_unchecked();
+
+function swede_highlight_unchecked(){
+  if (document.querySelector('#all-data')){
+    const table = document.querySelector('#all-data');
+    for (let row of table.rows) 
+      {
+         console.log(row.getElementsByTagName("td")[5])
+      }
+  }
+}
