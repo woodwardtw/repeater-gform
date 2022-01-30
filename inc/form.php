@@ -26,9 +26,9 @@ function swede_update_record($entry, $form){
                 'record_category' => $entry['1'] ,
                 'record_year' => $entry['10'],
                 //presentation specific
-                'presentation_title' => 'preso title',
-                'presentation_host' => 'pres host',
-                'presentation_location' => 'pres location',
+                'presentation_title' => $entry['11'],
+                'presentation_host' => $entry['12'],
+                'presentation_location' => $entry['13'],
                //hosted visitor specific
                 'hosted_visitor_org' => 'hosted org',
                 'hosted_visitor_activity' => 'hosted activity',
@@ -36,6 +36,8 @@ function swede_update_record($entry, $form){
                 'societal_impact' => '',
                 'impact_type' => 'foo',
                 'impact_type_string' => 'mishmash string previously',
+                //societal impact
+                'societal_impact_type' => $entry['17'],
                 //exterma org collab
                 // 'external_org_contribution' => $entry['1011.1'],
                 // 'course_code_and_term' => $entry['1012'],
