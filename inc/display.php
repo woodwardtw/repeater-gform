@@ -66,7 +66,7 @@ function all_tenure_records(){
         echo '<h2>' . $the_query->found_posts . '</h2>';
         echo '<button class="btn btn-primary" id="download">Download Data</button>';
         if ( $the_query->have_posts() ) :
-            echo '<table id="all-data"><tr><th>Name</th><th>Category</th><th>Detail</th><th>Year</th><th>Edit</th><th>Recorded</th></tr>';
+            echo '<table id="all-data"><tr><th>Name</th><th>Category</th><th>Detail</th><th>Year</th><th>Impact</th><th>Presentation</th><th>Course Collab</th><th>Edit</th><th>Recorded</th></tr>';
             while ( $the_query->have_posts() ) : $the_query->the_post();
                 $post_id = get_the_ID();
                 $author = get_the_title();            
@@ -97,7 +97,7 @@ function all_make_tenure_records($post_id, $author){
                     $presentation_title = get_sub_field('presentation_title');
                     $presentation_host = get_sub_field('presentation_host');
                     $presentation_location = get_sub_field('presentation_location');
-                    $presentation_details = ' - ' . $presentation_title . ' - ' . $presentation_location . ' - ' . $presentation_host;
+                    $presentation_details = ' | ' . $presentation_title . ' | ' . $presentation_location . ' | ' . $presentation_host;
                 } else {
                     $presentation_details = '';
                 }
@@ -110,9 +110,34 @@ function all_make_tenure_records($post_id, $author){
                 } else {
                     $visitor_details = '';
                 }
-                
+                //societal impact
+                if(get_sub_field('impact_type_string')){
+                    $impact = get_sub_field('impact_type_string');
+                } else {
+                    $impact = '';
+                }
 
-                $html .= '<tr><td>' . swede_array_check($author) . '</td><td>' . swede_array_check($record_category) . '</td><td>' . $record_title . $presentation_details . $visitor_details . '</td><td>' . $record_year . '</td><td>' . data_edit_post($post_id) . '</td><td><input class="recorded" type="checkbox" data-post_id="'.$post_id.'" data-row="' . get_row_index() . '" data-checked="' . $record_recorded . '" name="recorded-'. get_row_index().'" ' . recorded_checkbox($record_recorded) . '></td></tr>'; 
+                //course contribution
+                $course_code = '';
+                $course_year = '';
+                $course_org = '';
+                $course_org_loc = '';
+                
+                if(get_sub_field('course_code_and_name')){
+                    $course_code = get_sub_field('course_code_and_name');
+                }
+                if(get_sub_field('term_and_year')){
+                    $course_year = get_sub_field('term_and_year');
+                }
+                if(get_sub_field('organization_name')){
+                    $course_org = get_sub_field('organization_name');
+                }
+                if(get_sub_field('location_of_organization')){
+                    $course_org_loc = get_sub_field('location_of_organization');
+                }
+                $course_collab_details = "{$course_code} | {$course_year} | {$course_org} | {$course_org_loc}";
+
+                $html .= '<tr><td>' . swede_array_check($author) . '</td><td>' . swede_array_check($record_category) . '</td><td>' . $record_title . $visitor_details . '</td><td>' . $record_year . '</td><td>' . $impact . '</td><td>' . $presentation_details . '</td><td>' . $course_collab_details . '</td><td>' . data_edit_post($post_id) . '</td><td><input class="recorded" type="checkbox" data-post_id="'.$post_id.'" data-row="' . get_row_index() . '" data-checked="' . $record_recorded . '" name="recorded-'. get_row_index().'" ' . recorded_checkbox($record_recorded) . '></td></tr>'; 
         endwhile;
 
         else :

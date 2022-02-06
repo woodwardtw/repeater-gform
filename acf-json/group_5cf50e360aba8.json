@@ -268,8 +268,8 @@
                 },
                 {
                     "key": "field_61dae291b5c52",
-                    "label": "Course Code and Term",
-                    "name": "course_code_and_term",
+                    "label": "Course Code and Name",
+                    "name": "course_code_and_name",
                     "type": "text",
                     "instructions": "",
                     "required": 0,
@@ -425,5 +425,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1644160665
+    "modified": 1644182821
 }
