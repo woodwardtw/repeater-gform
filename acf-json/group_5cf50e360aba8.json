@@ -84,7 +84,7 @@
                     "key": "field_5d8813a24f8d6",
                     "label": "Recorded",
                     "name": "recorded",
-                    "type": "radio",
+                    "type": "text",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -93,16 +93,11 @@
                         "class": "",
                         "id": ""
                     },
-                    "choices": {
-                        "yes": "Yes",
-                        "no": "No"
-                    },
-                    "allow_null": 1,
-                    "other_choice": 0,
-                    "default_value": "no",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
                 },
                 {
                     "key": "field_603a58a5e17c8",
@@ -218,7 +213,7 @@
                     "key": "field_6148ef74e5b26",
                     "label": "Societal Impact",
                     "name": "societal_impact",
-                    "type": "radio",
+                    "type": "text",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -227,16 +222,11 @@
                         "class": "",
                         "id": ""
                     },
-                    "choices": {
-                        "yes": "Yes",
-                        "no": "No"
-                    },
-                    "allow_null": 1,
-                    "other_choice": 0,
                     "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
                 },
                 {
                     "key": "field_614b11c441dc5",
@@ -261,7 +251,7 @@
                     "key": "field_61dae11da59ae",
                     "label": "External org contribution",
                     "name": "external_org_contribution",
-                    "type": "radio",
+                    "type": "text",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -270,16 +260,11 @@
                         "class": "",
                         "id": ""
                     },
-                    "choices": {
-                        "yes": "Yes",
-                        "no": "No"
-                    },
-                    "allow_null": 0,
-                    "other_choice": 0,
                     "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
                 },
                 {
                     "key": "field_61dae291b5c52",
@@ -440,5 +425,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1644156669
+    "modified": 1644160665
 }

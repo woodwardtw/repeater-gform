@@ -34,11 +34,11 @@ function swede_update_record($entry, $form){
                 'hosted_visitor_org' => sweded_data_set('27', $entry),
                 'hosted_visitor_activity' => sweded_data_set('26', $entry),
                //impact specific 
-                'societal_impact' => sweded_data_set('5', $entry),
+                'societal_impact' => swede_true_false(sweded_data_set('5', $entry)),
                 // 'impact_type' => sweded_data_set('17', $entry),
                 'impact_type_string' => sweded_data_set('17', $entry),
                 //societal impact
-                'societal_impact_type' => sweded_data_set('17', $entry),
+                'societal_impact_type' => swede_true_false(sweded_data_set('17', $entry)),
                 //exterma org collab
                 'external_org_contribution' => sweded_data_set('25', $entry),
                 'course_code_and_term' => sweded_data_set('20', $entry),
@@ -66,6 +66,14 @@ function sweded_data_set($field, $entry){
         return $entry[$field];
     } else {
         return '';
+    }
+}
+
+function swede_true_false($response){
+    if($response != ''){
+        return "Yes";
+    } else {
+        return "No";
     }
 }
 
