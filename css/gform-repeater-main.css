@@ -206,3 +206,22 @@ button.info:hover {
 .entry-content h2, .entry-content h3 {
   margin-top:  40px;
 }
+
+.submit-again{
+  padding:  7px 12px;
+  border-radius: 30px;
+  background-color:  #424242;
+  font-size: 1.4rem;
+  color: #fff;
+  display: block;
+  margin:  15px auto;
+  text-align: center;
+  max-width: 80%;
+  transition: all .6s ease;
+}
+
+.submit-again:hover {
+  background-color: green;
+  color: #fff;
+  text-decoration: none;
+}

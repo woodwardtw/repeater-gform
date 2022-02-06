@@ -30,7 +30,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "50",
                         "class": "",
                         "id": ""
                     },
@@ -49,7 +49,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "25",
                         "class": "",
                         "id": ""
                     },
@@ -68,16 +68,16 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "25",
                         "class": "",
                         "id": ""
                     },
-                    "default_value": 2019,
+                    "default_value": 2022,
                     "placeholder": "",
                     "prepend": "",
                     "append": "",
                     "min": 2015,
-                    "max": 2025,
+                    "max": 2030,
                     "step": ""
                 },
                 {
@@ -89,7 +89,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "33",
                         "class": "",
                         "id": ""
                     },
@@ -111,24 +111,9 @@
                     "type": "text",
                     "instructions": "",
                     "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_61ed5bc276be5",
-                                "operator": "==",
-                                "value": "Academic meeting \/ conference presentation"
-                            }
-                        ],
-                        [
-                            {
-                                "field": "field_61ed5bc276be5",
-                                "operator": "==",
-                                "value": "Professional meeting presentation"
-                            }
-                        ]
-                    ],
+                    "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "33",
                         "class": "",
                         "id": ""
                     },
@@ -162,7 +147,7 @@
                         ]
                     ],
                     "wrapper": {
-                        "width": "",
+                        "width": "33",
                         "class": "",
                         "id": ""
                     },
@@ -179,24 +164,9 @@
                     "type": "text",
                     "instructions": "",
                     "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_61ed5bc276be5",
-                                "operator": "==",
-                                "value": "Academic meeting \/ conference presentation"
-                            }
-                        ],
-                        [
-                            {
-                                "field": "field_61ed5bc276be5",
-                                "operator": "==",
-                                "value": "Professional meeting presentation"
-                            }
-                        ]
-                    ],
+                    "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "33",
                         "class": "",
                         "id": ""
                     },
@@ -215,7 +185,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "50",
                         "class": "",
                         "id": ""
                     },
@@ -234,7 +204,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "50",
                         "class": "",
                         "id": ""
                     },
@@ -253,7 +223,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "20",
                         "class": "",
                         "id": ""
                     },
@@ -269,45 +239,6 @@
                     "save_other_choice": 0
                 },
                 {
-                    "key": "field_6148ef80e5b27",
-                    "label": "Impact type",
-                    "name": "impact_type",
-                    "type": "checkbox",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "100",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "Basis for decisions and policies with implications on people": "Basis for decisions and policies with implications on people",
-                        "Basis for decisions and policies with implications on planet": "Basis for decisions and policies with implications on planet",
-                        "Basis for decisions and policies with implications on profit": "Basis for decisions and policies with implications on profit",
-                        "Dissemination in academic channels": "Dissemination in academic channels",
-                        "Dissemination in public channels": "Dissemination in public channels",
-                        "Forms of co-production": "Forms of co-production",
-                        "Global scope in research": "Global scope in research",
-                        "National scope in research": "National scope in research",
-                        "Local scope in research": "Local scope in research",
-                        "Innovation in research": "Innovation in research",
-                        "Innovations in sustainable ways of working": "Innovations in sustainable ways of working",
-                        "Interdisciplinary initiatives": "Interdisciplinary initiatives",
-                        "Research awards": "Research awards",
-                        "Use of ICs in education": "Use of ICs in education",
-                        "Use of ICs in organizations": "Use of ICs in organizations",
-                        "Use of ICs in research": "Use of ICs in research",
-                        "Use of ICs in society": "Use of ICs in society"
-                    },
-                    "allow_custom": 0,
-                    "default_value": [],
-                    "layout": "horizontal",
-                    "toggle": 0,
-                    "return_format": "value",
-                    "save_custom": 0
-                },
-                {
                     "key": "field_614b11c441dc5",
                     "label": "Impact Type String",
                     "name": "impact_type_string",
@@ -316,7 +247,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "30",
                         "class": "",
                         "id": ""
                     },
@@ -335,7 +266,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "50",
                         "class": "",
                         "id": ""
                     },
@@ -359,7 +290,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "50",
                         "class": "",
                         "id": ""
                     },
@@ -378,7 +309,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "50",
                         "class": "",
                         "id": ""
                     },
@@ -397,7 +328,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "33",
                         "class": "",
                         "id": ""
                     },
@@ -416,7 +347,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "33",
                         "class": "",
                         "id": ""
                     },
@@ -435,7 +366,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "33",
                         "class": "",
                         "id": ""
                     },
@@ -509,5 +440,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1644154181
+    "modified": 1644156669
 }

@@ -21,32 +21,31 @@ function swede_update_record($entry, $form){
     $record = $entry;
     var_dump($record);
     $record_category = swede_one_cat($entry['1'], $entry['5']);
-    var_dump($record_category);
            
             $row = array(
-                'record_title' => $entry['8'],
+                'record_title' => sweded_data_set('8', $entry),
                 'record_category' => $record_category,
-                'record_year' => $entry['10'],
+                'record_year' => sweded_data_set('10', $entry),
                 //presentation specific
-                'presentation_title' => $entry['11'],
-                'presentation_host' => $entry['12'],
-                'presentation_location' => $entry['13'],
+                'presentation_title' => sweded_data_set('11', $entry),
+                'presentation_host' => sweded_data_set('12', $entry),
+                'presentation_location' => sweded_data_set('13', $entry),
                //hosted visitor specific
-                'hosted_visitor_org' => sweded_data_set('222', $entry),
-                'hosted_visitor_activity' => 'hosted activity',
+                'hosted_visitor_org' => sweded_data_set('27', $entry),
+                'hosted_visitor_activity' => sweded_data_set('26', $entry),
                //impact specific 
-                'societal_impact' => '',
-                'impact_type' => $entry[''],
-                'impact_type_string' => 'mishmash string previously',
+                'societal_impact' => sweded_data_set('5', $entry),
+                // 'impact_type' => sweded_data_set('17', $entry),
+                'impact_type_string' => sweded_data_set('17', $entry),
                 //societal impact
-                'societal_impact_type' => $entry['17'],
+                'societal_impact_type' => sweded_data_set('17', $entry),
                 //exterma org collab
-                'external_org_contribution' => $entry['25'],
-                'course_code_and_term' => $entry['20'],
-                'term_and_year' => $entry['21'],
-                'organization_name' => $entry['22'],
-                'location_of_organization' => $entry['23'],
-                'type_of_collaboration' => $entry['24'],
+                'external_org_contribution' => sweded_data_set('25', $entry),
+                'course_code_and_term' => sweded_data_set('20', $entry),
+                'term_and_year' => sweded_data_set('21', $entry),
+                'organization_name' => sweded_data_set('22', $entry),
+                'location_of_organization' => sweded_data_set('23', $entry),
+                'type_of_collaboration' => sweded_data_set('24', $entry),
             );
             //var_dump($row);
              add_row('faculty_record', $row, $post_id);
@@ -64,7 +63,7 @@ function swede_one_cat($entry_1, $entry_2){
 
 function sweded_data_set($field, $entry){
     if (array_key_exists($field, $entry)){
-        return $field;
+        return $entry[$field];
     } else {
         return '';
     }
@@ -417,28 +416,28 @@ add_action( 'gform_after_submission_1', 'update_record', 10, 2 );
 function update_record($entry, $form){
     global $post;
     $post_id = $post->ID;
-    $record = $entry['1000'];
+    $record = $entry;
     var_dump($record);
 
 
         foreach ($record as $key => $entry) {
-            $all_impacts = array($entry['1010.1'],
-                                $entry['1010.2'],
-                                $entry['1010.3'],
-                                $entry['1010.4'],
-                                $entry['1010.5'],
-                                $entry['1010.6'],
-                                $entry['1010.7'],
-                                $entry['1010.8'],
-                                $entry['1010.9'],
-                                $entry['1010.11'],
-                                $entry['1010.12'],
-                                $entry['1010.13'],
-                                $entry['1010.14'],
-                                $entry['1010.15'],
-                                $entry['1010.16'],
-                                $entry['1010.17'], 
-                                $entry['1010.18']);
+            // $all_impacts = array($entry['1010.1'],
+            //                     $entry['1010.2'],
+            //                     $entry['1010.3'],
+            //                     $entry['1010.4'],
+            //                     $entry['1010.5'],
+            //                     $entry['1010.6'],
+            //                     $entry['1010.7'],
+            //                     $entry['1010.8'],
+            //                     $entry['1010.9'],
+            //                     $entry['1010.11'],
+            //                     $entry['1010.12'],
+            //                     $entry['1010.13'],
+            //                     $entry['1010.14'],
+            //                     $entry['1010.15'],
+            //                     $entry['1010.16'],
+            //                     $entry['1010.17'], 
+            //                     $entry['1010.18']);
             $row = array(
                 'record_title' => $entry['1002'],
                 'record_category' => $entry['1001'] ,
@@ -466,3 +465,4 @@ function update_record($entry, $form){
              add_row('faculty_record', $row, $post_id);
         }
 }
+
