@@ -192,3 +192,17 @@ button.info:hover {
 .highlight {
   background-color:  red;
 }
+
+.gfield_radio div {
+  line-height: 1.2;
+  margin-bottom: 8px;
+  transition: all .6s ease;
+}
+
+.gfield_radio div:hover {
+  background-color: #efefef;
+}
+
+.entry-content h2, .entry-content h3 {
+  margin-top:  40px;
+}

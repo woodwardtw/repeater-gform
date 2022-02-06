@@ -20,36 +20,55 @@ function swede_update_record($entry, $form){
     $post_id = $post->ID;
     $record = $entry;
     var_dump($record);
+    $record_category = swede_one_cat($entry['1'], $entry['5']);
+    var_dump($record_category);
            
             $row = array(
                 'record_title' => $entry['8'],
-                'record_category' => $entry['1'] ,
+                'record_category' => $record_category,
                 'record_year' => $entry['10'],
                 //presentation specific
                 'presentation_title' => $entry['11'],
                 'presentation_host' => $entry['12'],
                 'presentation_location' => $entry['13'],
                //hosted visitor specific
-                'hosted_visitor_org' => 'hosted org',
+                'hosted_visitor_org' => sweded_data_set('222', $entry),
                 'hosted_visitor_activity' => 'hosted activity',
                //impact specific 
                 'societal_impact' => '',
-                'impact_type' => 'foo',
+                'impact_type' => $entry[''],
                 'impact_type_string' => 'mishmash string previously',
                 //societal impact
                 'societal_impact_type' => $entry['17'],
                 //exterma org collab
-                // 'external_org_contribution' => $entry['1011.1'],
-                // 'course_code_and_term' => $entry['1012'],
-                // 'term_and_year' => $entry['1013'],
-                // 'organization_name' => $entry['1014'],
-                // 'location_of_organization' => $entry['1015'],
-                // 'type_of_collaboration' => $entry['1016'],
+                'external_org_contribution' => $entry['25'],
+                'course_code_and_term' => $entry['20'],
+                'term_and_year' => $entry['21'],
+                'organization_name' => $entry['22'],
+                'location_of_organization' => $entry['23'],
+                'type_of_collaboration' => $entry['24'],
             );
             //var_dump($row);
              add_row('faculty_record', $row, $post_id);
 }
 
+
+function swede_one_cat($entry_1, $entry_2){
+    if($entry_1 != "Deselect" && $entry_1 != null){
+        return $entry_1;
+    } else {
+        return $entry_2;
+    }
+
+}
+
+function sweded_data_set($field, $entry){
+    if (array_key_exists($field, $entry)){
+        return $field;
+    } else {
+        return '';
+    }
+}
 
 //***********************************ORIGINAL---OLD---------
 //BUILD GRAVITY FORM

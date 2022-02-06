@@ -19,7 +19,7 @@
             "min": 0,
             "max": 0,
             "layout": "block",
-            "button_label": "",
+            "button_label": "Add New Activity",
             "sub_fields": [
                 {
                     "key": "field_5cf50e504b39a",
@@ -111,7 +111,22 @@
                     "type": "text",
                     "instructions": "",
                     "required": 0,
-                    "conditional_logic": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_61ed5bc276be5",
+                                "operator": "==",
+                                "value": "Academic meeting \/ conference presentation"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_61ed5bc276be5",
+                                "operator": "==",
+                                "value": "Professional meeting presentation"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "",
                         "class": "",
@@ -130,7 +145,22 @@
                     "type": "text",
                     "instructions": "",
                     "required": 0,
-                    "conditional_logic": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_61ed5bc276be5",
+                                "operator": "==",
+                                "value": "Academic meeting \/ conference presentation"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_61ed5bc276be5",
+                                "operator": "==",
+                                "value": "Professional meeting presentation"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "",
                         "class": "",
@@ -149,7 +179,22 @@
                     "type": "text",
                     "instructions": "",
                     "required": 0,
-                    "conditional_logic": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_61ed5bc276be5",
+                                "operator": "==",
+                                "value": "Academic meeting \/ conference presentation"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_61ed5bc276be5",
+                                "operator": "==",
+                                "value": "Professional meeting presentation"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "",
                         "class": "",
@@ -216,7 +261,7 @@
                         "yes": "Yes",
                         "no": "No"
                     },
-                    "allow_null": 0,
+                    "allow_null": 1,
                     "other_choice": 0,
                     "default_value": "",
                     "layout": "vertical",
@@ -399,6 +444,44 @@
                     "prepend": "",
                     "append": "",
                     "maxlength": ""
+                },
+                {
+                    "key": "field_61ed5b9976be4",
+                    "label": "Engagement activities",
+                    "name": "engagement_activities",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_61ed5bc276be5",
+                    "label": "Engagement activities, which could have societal impact",
+                    "name": "engagement_activities_societal",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
                 }
             ]
         }
@@ -426,5 +509,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1641738570
+    "modified": 1644154181
 }
