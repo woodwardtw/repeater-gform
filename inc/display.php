@@ -118,24 +118,31 @@ function all_make_tenure_records($post_id, $author){
                 }
 
                 //course contribution
-                $course_code = '';
-                $course_year = '';
-                $course_org = '';
-                $course_org_loc = '';
                 
+
                 if(get_sub_field('course_code_and_name')){
                     $course_code = get_sub_field('course_code_and_name');
+                } else{
+                    $course_code = '';
                 }
                 if(get_sub_field('term_and_year')){
-                    $course_year = get_sub_field('term_and_year');
+                    $course_year = get_sub_field('term_and_year') . ' | ';
+                }else{
+                    $course_year = '';
                 }
                 if(get_sub_field('organization_name')){
-                    $course_org = get_sub_field('organization_name');
+                    $course_org = get_sub_field('organization_name') . ' | ';
+                }else{
+                    $course_org = '';
                 }
                 if(get_sub_field('location_of_organization')){
-                    $course_org_loc = get_sub_field('location_of_organization');
+                    $course_org_loc = get_sub_field('location_of_organization') . ' | ';
+                }else{
+                $course_org_loc = '';                    
                 }
-                $course_collab_details = "{$course_code} | {$course_year} | {$course_org} | {$course_org_loc}";
+                $course_collab_details = "{$course_code} {$course_year} {$course_org} {$course_org_loc}";
+
+                
 
                 $html .= '<tr><td>' . swede_array_check($author) . '</td><td>' . swede_array_check($record_category) . '</td><td>' . $record_title . $visitor_details . '</td><td>' . $record_year . '</td><td>' . $impact . '</td><td>' . $presentation_details . '</td><td>' . $course_collab_details . '</td><td>' . data_edit_post($post_id) . '</td><td><input class="recorded" type="checkbox" data-post_id="'.$post_id.'" data-row="' . get_row_index() . '" data-checked="' . $record_recorded . '" name="recorded-'. get_row_index().'" ' . recorded_checkbox($record_recorded) . '></td></tr>'; 
         endwhile;
