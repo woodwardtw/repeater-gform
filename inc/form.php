@@ -41,7 +41,7 @@ function swede_update_record($entry, $form){
                 'societal_impact_type' => swede_true_false(sweded_data_set('17', $entry)),
                 //exterma org collab
                 'external_org_contribution' => sweded_data_set('25', $entry),
-                'course_code_and_term' => sweded_data_set('20', $entry),
+                'course_code_and_name' => sweded_data_set('20', $entry),
                 'term_and_year' => sweded_data_set('21', $entry),
                 'organization_name' => sweded_data_set('22', $entry),
                 'location_of_organization' => sweded_data_set('23', $entry),
