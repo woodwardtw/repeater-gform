@@ -19,7 +19,7 @@ function swede_update_record($entry, $form){
     global $post;
     $post_id = $post->ID;
     $record = $entry;
-    var_dump($record);
+    //var_dump($record);
     $record_category = swede_one_cat($entry['1'], $entry['5']);
            
             $row = array(
@@ -45,7 +45,7 @@ function swede_update_record($entry, $form){
                 'term_and_year' => sweded_data_set('21', $entry),
                 'organization_name' => sweded_data_set('22', $entry),
                 'location_of_organization' => sweded_data_set('23', $entry),
-                'type_of_collaboration' => sweded_data_set('24', $entry),
+                'type_of_collaboration' => sweded_data_set('28', $entry),
             );
             //var_dump($row);
              add_row('faculty_record', $row, $post_id);
